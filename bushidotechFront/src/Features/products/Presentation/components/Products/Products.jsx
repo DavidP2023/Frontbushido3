@@ -15,7 +15,7 @@ const ProductsData = [
   {
     id: 2,
     img: Img2,
-    title: "Tarjeta gráfica avanzada",
+    title: "Placas de Video",
     rating: 4.5,
     aosDelay: "200",
   },
@@ -29,7 +29,7 @@ const ProductsData = [
   {
     id: 4,
     img: Img4,
-    title: "Placa base",
+    title: "Motherboards",
     rating: 4.4,
     aosDelay: "600",
   },

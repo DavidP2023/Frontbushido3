@@ -1,5 +1,5 @@
 import React from 'react'
-import bushidoLogo from '../../../../../assets/logob.png'
+import bushidoLogo from '../../../../../assets/logopopup.png'
 
 export const PopupRegisterSucess = ({setShowModal}) => {
     return (

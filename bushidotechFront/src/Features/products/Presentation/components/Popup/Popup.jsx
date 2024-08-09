@@ -1,5 +1,5 @@
 import { IoCloseOutline } from "react-icons/io5";
-import Logo from "../../../../../assets/logob.png";
+import Logo from "../../../../../assets/logopopup.png";
 
 export const Popup = ({ orderPopup, setOrderPopup }) => {
   return (

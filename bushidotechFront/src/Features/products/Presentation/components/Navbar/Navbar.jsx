@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Logo from "../../../../../assets/logob.png";
+import Logo from "../../../../../assets/LogoH.png";
 import { IoMdSearch } from "react-icons/io";
 import { FaCartShopping, FaUser } from "react-icons/fa6";
 import { FaCaretDown } from "react-icons/fa";
@@ -23,37 +23,53 @@ const Menu = [
   },
   {
     id: 3,
-    name: "Tarjetas Gráficas",
-    link: "/#tarjetas-graficas",
+    name: "Placas de Video",
+    link: "/placadevideo",
   },
   {
     id: 4,
-    name: "Placas Base",
-    link: "/#placas-base",
+    name: "Motherboards",
+    link: "/motherboards",
   },
   {
     id: 5,
     name: "Periféricos",
-    link: "/#perifericos",
+    link: "/perifericos",
   },
 ];
 
 const DropdownLinks = [
   {
     id: 1,
-    name: "Productos Populares",
-    link: "/#productos-populares",
+    name: "Cooler",
+    link: "/#cooler",
   },
   {
     id: 2,
-    name: "Más Vendidos",
-    link: "/#mas-vendidos",
+    name: "Discos duros HDD",
+    link: "/#discos-durosHDD",
   },
   {
     id: 3,
-    name: "Más Valorados",
-    link: "/#mas-valorados",
+    name: "Discos Solidos SSD",
+    link: "/#discos-solidosSSD",
   },
+  {
+    id: 4,
+    name: "Fuentes",
+    link: "/#fuentes",
+  },
+  {
+    id: 3,
+    name: "Gabinetes",
+    link: "/#gabinetes",
+  },
+  {
+    id: 3,
+    name: "Memorias RAM",
+    link: "/#memorias-RAM",
+  },
+  
 ];
 
 export const Navbar = () => {
@@ -75,7 +91,7 @@ export const Navbar = () => {
       <div className="bg-primary/40 py-2">
         <div className="container mx-auto flex justify-between items-center px-4">
           <div className="flex items-center">
-            <img src={Logo} alt="Logo" className="w-12 mr-2" />
+            <img src={Logo} alt="Logo" className="w-16 mr-3" />
             <a href="#" className="font-bold text-2xl sm:text-4xl text-white dark:text-gray-200">
               BUSHIDOTECH
             </a>

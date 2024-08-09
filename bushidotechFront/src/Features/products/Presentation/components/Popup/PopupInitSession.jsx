@@ -1,7 +1,7 @@
 import PropTypes, { string } from "prop-types";
 import { RegisterPopup } from "./RegisterPopup";
 import { usepopupSessionshook } from "../../hooks/use_popupSessions_hook";
-import Logo from "../../../../../assets/logob.png";
+import Logo from "../../../../../assets/logopopup.png";
 
 export const PopupInitSession = ({ showModal, setShowModal, setShowRegisterModal }) => {
   const {

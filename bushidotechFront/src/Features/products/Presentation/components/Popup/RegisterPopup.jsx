@@ -1,11 +1,10 @@
 import React from "react";
-import PropTypes from "prop-types";
+import bushidoLogo from "../../../../../assets/logopopup.png"; 
+
 import { usePopupRegisterController } from "../../hooks/usePopupRegisterController_hook";
 import { PopupRegisterSucess } from "./PopupRegisterSucess";
-import bushidoLogo from '../../../../../assets/logob.png'; 
 
 export const RegisterPopup = ({ showModal, setShowModal }) => {
-
   const {
     errors,
     showRegisterSucessModal,
@@ -13,9 +12,10 @@ export const RegisterPopup = ({ showModal, setShowModal }) => {
     handleChange,
     handleBlur,
     values,
-    touched
+    touched,
   } = usePopupRegisterController({
-    showModal, setShowModal,
+    showModal,
+    setShowModal,
   });
 
   return (
@@ -33,7 +33,11 @@ export const RegisterPopup = ({ showModal, setShowModal }) => {
                 X
               </button>
               <div className="flex flex-col items-center">
-                <img src={bushidoLogo} alt="Bushido Logo" className="h-32 w-auto mb-4" />
+                <img
+                  src={bushidoLogo}
+                  alt="Bushido Logo"
+                  className="h-32 w-auto mb-4"
+                />
                 <h2 className="mb-4 text-2xl font-semibold text-center">
                   Crear cuenta
                 </h2>
@@ -41,16 +45,16 @@ export const RegisterPopup = ({ showModal, setShowModal }) => {
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="flex flex-wrap -mx-2">
                   {[
-                    { label: 'Nombre', name: 'name', type: 'text' },
-                    { label: 'Apellido', name: 'lastname', type: 'text' },
-                    { label: 'Email', name: 'email', type: 'email' },
-                    { label: 'DNI', name: 'dni', type: 'text' },
-                    { label: 'Dirección', name: 'adress', type: 'text' },
-                    { label: 'Ciudad', name: 'ciudad', type: 'text' },
-                    { label: 'Provincia', name: 'provincia', type: 'text' },
-                    { label: 'Contraseña', name: 'password', type: 'password' }
+                    { label: "Nombre", name: "name", type: "text" },
+                    { label: "Apellido", name: "lastname", type: "text" },
+                    { label: "Email", name: "email", type: "email" },
+                    { label: "DNI", name: "dni", type: "text" },
+                    { label: "Dirección", name: "adress", type: "text" },
+                    { label: "Ciudad", name: "ciudad", type: "text" },
+                    { label: "Provincia", name: "provincia", type: "text" },
+                    { label: "Contraseña", name: "password", type: "password" },
                   ].map(({ label, name, type }, index) => (
-                    <div key={index} className="w-full md:w-1/2 px-2 mb-4">
+                    <div key={`${name}-${index}`} className="w-full md:w-1/2 px-2 mb-4">
                       <label
                         htmlFor={name}
                         className="block text-sm font-medium text-gray-700"
