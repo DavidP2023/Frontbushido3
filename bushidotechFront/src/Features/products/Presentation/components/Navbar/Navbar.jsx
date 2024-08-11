@@ -91,10 +91,8 @@ export const Navbar = () => {
       <div className="bg-primary/40 py-2">
         <div className="container mx-auto flex justify-between items-center px-4">
           <div className="flex items-center">
-            <img src={Logo} alt="Logo" className="w-16 mr-3" />
-            <a href="#" className="font-bold text-2xl sm:text-4xl text-white dark:text-gray-200">
-              BUSHIDOTECH
-            </a>
+            <img src={Logo} alt="Logo" className="w-16 mr-4" />
+            
           </div>
 
           {/* Barra de Búsqueda */}

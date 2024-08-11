@@ -1,5 +1,9 @@
 import React from 'react';
-    
+import { Link } from 'react-router-dom';
+import logitechpro from '../../../../assets/Perifericos/logitechpro.png';
+import raze from '../../../../assets/Perifericos/raze.png';
+
+
     export const PerifericosPage = () => {
       const categories = [
         'Componentes de PC',
@@ -18,7 +22,7 @@ import React from 'react';
         {
           id: 1,
           name: 'Teclado Mecánico Logitech G Pro',
-          image: 'url-to-image-1.jpg',
+          image: logitechpro,
           price: '108,300',
           previousPrice: '111,400',
           available: true,
@@ -26,75 +30,12 @@ import React from 'react';
         {
           id: 2,
           name: 'Ratón Gaming Razer DeathAdder V2',
-          image: 'url-to-image-2.jpg',
+          image: raze,
           price: '79,350',
           previousPrice: '83,150',
           available: true,
-        },
-        {
-          id: 3,
-          name: 'Auriculares HyperX Cloud II',
-          image: 'url-to-image-3.jpg',
-          price: '109,050',
-          previousPrice: '115,400',
-          available: true,
-        },
-        {
-          id: 4,
-          name: 'Monitor Gaming ASUS TUF VG27AQ',
-          image: 'url-to-image-4.jpg',
-          price: '215,850',
-          previousPrice: '219,000',
-          available: true,
-        },
-        {
-          id: 5,
-          name: 'Alfombrilla de Ratón SteelSeries QcK',
-          image: 'url-to-image-5.jpg',
-          price: '50,300',
-          previousPrice: '55,600',
-          available: true,
-        },
-        {
-          id: 6,
-          name: 'Webcam Logitech C920 HD Pro',
-          image: 'url-to-image-6.jpg',
-          price: '20,999',
-          previousPrice: '25,000',
-          available: true,
-        },
-        {
-          id: 7,
-          name: 'Micrófono Blue Yeti USB',
-          image: 'url-to-image-7.jpg',
-          price: '120,500',
-          previousPrice: '125,800',
-          available: true,
-        },
-        {
-          id: 8,
-          name: 'Joystick Xbox Wireless Controller',
-          image: 'url-to-image-8.jpg',
-          price: '70,300',
-          previousPrice: '75,400',
-          available: true,
-        },
-        {
-          id: 9,
-          name: 'Altavoces Creative Pebble 2.0',
-          image: 'url-to-image-9.jpg',
-          price: '19,999',
-          previousPrice: '20,000',
-          available: true,
-        },
-        {
-          id: 10,
-          name: 'Cámara GoPro HERO9 Black',
-          image: 'url-to-image-10.jpg',
-          price: '250,300',
-          previousPrice: '255,400',
-          available: true,
         }
+      
       ];
     
       return (
@@ -116,7 +57,8 @@ import React from 'react';
             <h1 className='text-center text-3xl font-bold mb-8 text-orange-600'>Perifericos</h1>
             <div className='grid grid-cols-3 gap-4'>
               {products.map((product) => (
-                <div key={product.id} className='max-w-sm rounded overflow-hidden shadow-lg bg-white'>
+                <Link to={`/perifericos/${product.id}`} key={product.id}>
+                <div className='max-w-sm rounded overflow-hidden shadow-lg bg-white'>
                   <img className='w-full' src={product.image} alt={product.name} />
                   <div className='px-6 py-4'>
                     <div className='font-bold text-xl mb-2 text-gray-800'>{product.name}</div>
@@ -134,6 +76,7 @@ import React from 'react';
                     )}
                   </div>
                 </div>
+              </Link>
               ))}
             </div>
           </div>

@@ -5,6 +5,10 @@ import { ProcesorsPage } from '../../Features/products/Presentation/Pages/Proces
 import { PlacavideoPage } from '../../Features/products/Presentation/Pages/Placavideos_page'
 import { MotherboardsPage } from '../../Features/products/Presentation/Pages/Motherboards_page'
 import { PerifericosPage } from '../../Features/products/Presentation/Pages/Perifericos_page'
+import ProductDetail from "../../Features/products/Presentation/procedetallado/ProductDetail";
+import ProductPlaca from "../../Features/products/Presentation/placadetallado/ProductPlaca";
+import ProductMother from "../../Features/products/Presentation/motherdetallado/ProductMother";
+import ProductPeriferico from "../../Features/products/Presentation/perifericodetallado/ProductPeriferico";
 
 export const AppRouter = () => {
 
@@ -18,6 +22,10 @@ export const AppRouter = () => {
                  <Route  path='/placadevideo' element={<PlacavideoPage/>}/> 
                  <Route  path='/motherboards' element={<MotherboardsPage/>}/> 
                  <Route  path='/perifericos' element={<PerifericosPage/>}/> 
+                 <Route path="/procesadores/:id" element={<ProductDetail />} />
+                 <Route path="/placavideo/:id" element={<ProductPlaca />} />
+                 <Route path="/motherboards/:id" element={<ProductMother />} />
+                 <Route path="/perifericos/:id" element={<ProductPeriferico />} />
             </Routes>
             </Layout>
         </BrowserRouter>

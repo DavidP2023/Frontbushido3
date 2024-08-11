@@ -1,5 +1,8 @@
+import { Link } from 'react-router-dom';
 import React from 'react';
-    
+import placa3060 from '../../../../assets/Placavideo/placa3060.png';
+import placa3070 from '../../../../assets/Placavideo/placa3070.png';
+
     export const PlacavideoPage = () => {
       const categories = [
         'Componentes de PC',
@@ -18,7 +21,7 @@ import React from 'react';
         {
           id: 1,
           name: 'Tarjeta de Video NVIDIA GeForce RTX 3060',
-          image: 'url-to-image-1.jpg',
+          image: placa3060,
           price: '308,300',
           previousPrice: '311,400',
           available: true,
@@ -26,75 +29,12 @@ import React from 'react';
         {
           id: 2,
           name: 'Tarjeta de Video NVIDIA GeForce RTX 3070',
-          image: 'url-to-image-2.jpg',
+          image: placa3070,
           price: '379,350',
           previousPrice: '383,150',
           available: true,
-        },
-        {
-          id: 3,
-          name: 'Tarjeta de Video AMD Radeon RX 6600',
-          image: 'url-to-image-3.jpg',
-          price: '309,050',
-          previousPrice: '315,400',
-          available: true,
-        },
-        {
-          id: 4,
-          name: 'Tarjeta de Video AMD Radeon RX 6700 XT',
-          image: 'url-to-image-4.jpg',
-          price: '315,850',
-          previousPrice: '319,000',
-          available: true,
-        },
-        {
-          id: 5,
-          name: 'Tarjeta de Video NVIDIA GeForce RTX 3080',
-          image: 'url-to-image-5.jpg',
-          price: '450,300',
-          previousPrice: '455,600',
-          available: true,
-        },
-        {
-          id: 6,
-          name: 'Tarjeta de Video NVIDIA GeForce RTX 3090',
-          image: 'url-to-image-6.jpg',
-          price: '800,999',
-          previousPrice: '810,000',
-          available: true,
-        },
-        {
-          id: 7,
-          name: 'Tarjeta de Video AMD Radeon RX 6800',
-          image: 'url-to-image-7.jpg',
-          price: '620,500',
-          previousPrice: '625,800',
-          available: true,
-        },
-        {
-          id: 8,
-          name: 'Tarjeta de Video AMD Radeon RX 6900 XT',
-          image: 'url-to-image-8.jpg',
-          price: '740,300',
-          previousPrice: '750,400',
-          available: true,
-        },
-        {
-          id: 9,
-          name: 'Tarjeta de Video NVIDIA GeForce RTX 4090',
-          image: 'url-to-image-9.jpg',
-          price: '999,999',
-          previousPrice: '1,010,000',
-          available: true,
-        },
-        {
-          id: 10,
-          name: 'Tarjeta de Video AMD Radeon RX 5500 XT',
-          image: 'url-to-image-10.jpg',
-          price: '250,300',
-          previousPrice: '255,400',
-          available: true,
         }
+        
       ];
     
       return (
@@ -116,7 +56,8 @@ import React from 'react';
             <h1 className='text-center text-3xl font-bold mb-8 text-orange-600'>Placa de videos</h1>
             <div className='grid grid-cols-3 gap-4'>
               {products.map((product) => (
-                <div key={product.id} className='max-w-sm rounded overflow-hidden shadow-lg bg-white'>
+                <Link to={`/placavideo/${product.id}`} key={product.id}>
+                <div className='max-w-sm rounded overflow-hidden shadow-lg bg-white'>
                   <img className='w-full' src={product.image} alt={product.name} />
                   <div className='px-6 py-4'>
                     <div className='font-bold text-xl mb-2 text-gray-800'>{product.name}</div>
@@ -134,6 +75,7 @@ import React from 'react';
                     )}
                   </div>
                 </div>
+              </Link>
               ))}
             </div>
           </div>
