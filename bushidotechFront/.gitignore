@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 .env
+../bushidotech-api/
+../bushidotech-bo/
+../nest-cheatsheet.pdf
+../restfull-api/
 
 # Editor directories and files
 .vscode/*
