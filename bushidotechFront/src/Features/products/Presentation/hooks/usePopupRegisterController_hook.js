@@ -30,9 +30,8 @@ const registerFormSchema = yup.object().shape({
 
 export const usePopupRegisterController = ({ showModal, setShowModal }) => {
 
-    const { errors, handleSubmit, handleChange, handleBlur, values, touched } = useFormik({
+    const { errors, handleSubmit, handleChange, handleBlur, values, touched, resetForm} = useFormik({
         initialValues: {
-
             email: '',
             password: '',
             lastname: '',
@@ -44,6 +43,7 @@ export const usePopupRegisterController = ({ showModal, setShowModal }) => {
         },
         validationSchema: registerFormSchema,
         onSubmit: (values) => handleRegisterClick(values),
+        
     });
 
     const { SaveUserLocalData } = useAuthenticationStorage();
@@ -66,14 +66,16 @@ export const usePopupRegisterController = ({ showModal, setShowModal }) => {
             mutate(
                 user
             );
+           
     };
 
     useEffect(() => {
 
-        if (data && !loading) {
+        if (data && data.signup && !loading) {
             console.log(data);
             SaveUserLocalData(data.signup.user, data.signup.token);
             setShowRegisterSucessModal(true);
+            resetForm();
 
         }
 
@@ -88,6 +90,8 @@ export const usePopupRegisterController = ({ showModal, setShowModal }) => {
         values,
         touched,
         showRegisterSucessModal,
-        setShowRegisterSucessModal
+        setShowRegisterSucessModal,
+        loading
+        
     }
 }

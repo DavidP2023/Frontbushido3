@@ -6,7 +6,9 @@ export const useAuthenticationStorage = create()(
         (set) => ({
             user: null,
             token: null,
-            SaveUserLocalData: (user, token) => set({ user: user, token: token })
+            SaveUserLocalData: (user, token) => set({ user: user, token: token }),
+            DeleteUserSession: () => set({ user: null, token: null })
+
         }),
         {
             name: 'auth-storage',
@@ -14,3 +16,4 @@ export const useAuthenticationStorage = create()(
         }
     )
 );
+

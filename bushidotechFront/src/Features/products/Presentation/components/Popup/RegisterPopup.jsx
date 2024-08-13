@@ -13,17 +13,21 @@ export const RegisterPopup = ({ showModal, setShowModal }) => {
     handleBlur,
     values,
     touched,
+    loading,
+    setShowRegisterSucessModal 
   } = usePopupRegisterController({
     showModal,
     setShowModal,
   });
+
 
   return (
     <>
       {showModal && (
         <div className="h-screen w-screen fixed top-0 left-0 bg-black/50 z-50 backdrop-blur-sm flex items-center justify-center">
           {showRegisterSucessModal ? (
-            <PopupRegisterSucess setShowModal={setShowModal} />
+            <PopupRegisterSucess setShowModal={setShowModal}
+             setShowRegisterSucessModal={setShowRegisterSucessModal} />
           ) : (
             <div className="relative p-6 shadow-md bg-white dark:bg-gray-900 rounded-lg duration-200 w-[90%] max-w-[600px]">
               <button
@@ -84,7 +88,10 @@ export const RegisterPopup = ({ showModal, setShowModal }) => {
                     type="submit"
                     className="block w-full px-4 py-2 border from-primary to-secondary hover:scale-105 bg-gradient-to-r text-white rounded-lg"
                   >
-                    Registrarse
+                    {
+                      loading && 'Cargando...'
+                    }
+                    Registrarse 
                   </button>
                   <button
                     type="button"
