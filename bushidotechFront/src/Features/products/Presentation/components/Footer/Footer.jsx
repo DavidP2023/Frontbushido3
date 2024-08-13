@@ -1,6 +1,5 @@
 import React from "react";
 import footerLogo from "../../../../../assets/logopopup.png";
-import Banner from "../../../../../assets/website/footer.avif";
 import {
   FaFacebook,
   FaInstagram,
@@ -8,15 +7,6 @@ import {
   FaLocationArrow,
   FaMobileAlt,
 } from "react-icons/fa";
-
-const BannerImg = {
-  backgroundImage: `url(${Banner})`,
-  backgroundPosition: "bottom",
-  backgroundRepeat: "no-repeat",
-  backgroundSize: "cover",
-  height: "100%",
-  width: "100%",
-};
 
 const FooterLinks = [
   {
@@ -39,17 +29,17 @@ const FooterLinks = [
 
 export const Footer = () => {
   return (
-    <div style={BannerImg} className="text-white">
+    <div className="bg-gray-900 text-white">
       <div className="container mx-auto py-10 px-5">
         <div className="grid md:grid-cols-3 gap-10 pb-10">
-          {/* detalles de la empresa */}
+          {/* Detalles de la empresa */}
           <div className="flex flex-col justify-between">
             <div>
               <h1 className="text-3xl font-bold flex items-center gap-3 mb-3">
                 <img src={footerLogo} alt="Logo" className="max-w-[50px]" />
                 BushidoTech
               </h1>
-              <p className="text-gray-300">
+              <p className="text-gray-400">
                 Encuentra los mejores componentes de PC a precios competitivos. Garantía de calidad y servicio al cliente excepcional.
               </p>
             </div>
@@ -73,7 +63,7 @@ export const Footer = () => {
               <ul className="flex flex-col gap-3">
                 {FooterLinks.map((link) => (
                   <li
-                    className="cursor-pointer hover:text-primary hover:translate-x-1 duration-300 text-gray-200"
+                    className="cursor-pointer hover:text-primary hover:translate-x-1 duration-300 text-gray-400"
                     key={link.title}
                   >
                     <a href={link.link}>{link.title}</a>
@@ -83,7 +73,7 @@ export const Footer = () => {
             </div>
           </div>
 
-          {/* enlaces sociales */}
+          {/* Enlaces sociales */}
           <div className="flex flex-col justify-between">
             <div>
               <h1 className="text-xl font-bold mb-3">Síguenos</h1>
@@ -112,8 +102,8 @@ export const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="text-center py-4 border-t border-gray-600 mt-10">
-          <p className="text-gray-400">&copy; 2024 BushidoTech. Todos los derechos reservados.</p>
+        <div className="text-center py-4 border-t border-gray-700 mt-10">
+          <p className="text-gray-500">&copy; 2024 BushidoTech. Todos los derechos reservados.</p>
         </div>
       </div>
     </div>

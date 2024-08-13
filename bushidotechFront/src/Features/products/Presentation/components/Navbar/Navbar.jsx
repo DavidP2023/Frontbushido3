@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Logo from "../../../../../assets/LogoH.png";
+import Logo from "../../../../../assets/LogoBus.png";
 import { IoMdSearch } from "react-icons/io";
 import { FaCartShopping, FaUser } from "react-icons/fa6";
-import { FaCaretDown } from "react-icons/fa";
+import { FaCaretDown, FaBars } from "react-icons/fa";
 import { DarkMode } from "./DarkMode";
 import { PopupInitSession } from "../Popup/PopupInitSession";
 import { Popup } from "../Popup/Popup";
@@ -60,22 +60,22 @@ const DropdownLinks = [
     link: "/#fuentes",
   },
   {
-    id: 3,
+    id: 5,
     name: "Gabinetes",
     link: "/#gabinetes",
   },
   {
-    id: 3,
+    id: 6,
     name: "Memorias RAM",
     link: "/#memorias-RAM",
   },
-  
 ];
 
 export const Navbar = () => {
   const [showInitSessionModal, setShowInitSessionModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [orderPopup, setOrderPopup] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleOrderPopup = () => {
     setOrderPopup(!orderPopup);
@@ -91,8 +91,14 @@ export const Navbar = () => {
       <div className="bg-primary/40 py-2">
         <div className="container mx-auto flex justify-between items-center px-4">
           <div className="flex items-center">
-            <img src={Logo} alt="Logo" className="w-16 mr-4" />
-            
+          <img src={Logo} alt="Logo" className="w-48 mr-3" />
+            {/* Botón para abrir el menú en pantallas pequeñas */}
+            <button
+              className="sm:hidden text-white"
+              onClick={() => setMenuOpen(!menuOpen)}
+            >
+              <FaBars size={24} />
+            </button>
           </div>
 
           {/* Barra de Búsqueda */}
@@ -109,7 +115,7 @@ export const Navbar = () => {
             {/* Botón de Orden */}
             <button
               onClick={handleOrderPopup}
-              className="bg-gradient-to-r from-orange-500 to-orange-700 transition-all duration-200 text-white py-2 px-4 rounded-md flex items-center gap-2 group hover:from-orange-600 hover:to-orange-800 transform hover:scale-105"
+              className="hidden sm:flex bg-gradient-to-r from-orange-500 to-orange-700 transition-all duration-200 text-white py-2 px-4 rounded-md items-center gap-2 group hover:from-orange-600 hover:to-orange-800 transform hover:scale-105"
             >
               <FaCartShopping className="text-xl text-white drop-shadow-sm cursor-pointer" />
               <span className="hidden sm:block group-hover:inline-block">Ordenar</span>
@@ -131,9 +137,9 @@ export const Navbar = () => {
       </div>
 
       {/* Navbar Inferior */}
-      <div className="bg-primary/30 py-2">
-        <div className="container mx-auto flex justify-center">
-          <ul className="sm:flex hidden items-center gap-6">
+      <div className={`bg-primary/30 py-2 ${menuOpen ? "block" : "hidden"} sm:block`}>
+        <div className="container mx-auto flex flex-col sm:flex-row justify-center">
+          <ul className="flex flex-col sm:flex-row items-center gap-6">
             {Menu.map((data) => (
               <li key={data.id}>
                 <Link
