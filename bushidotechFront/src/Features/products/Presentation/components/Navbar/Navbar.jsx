@@ -10,6 +10,8 @@ import { Link } from "react-router-dom";
 import { PopupRegisterSucess } from "../Popup/PopupRegisterSucess";
 import { RegisterPopup } from "../Popup/RegisterPopup";
 import { useAuthenticationStorage } from "../../../../user/data/local/user_local_data_sources";
+import {UserProfileModal } from '../Navbar/UserProfileModal';
+
 
 const Menu = [
   {
@@ -77,6 +79,7 @@ export const Navbar = () => {
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [orderPopup, setOrderPopup] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showUserProfileModal, setShowUserProfileModal] = useState(false);
 
   const handleOrderPopup = () => {
     setOrderPopup(!orderPopup);
@@ -145,8 +148,10 @@ export const Navbar = () => {
               user && token ?
                 <>
 
-                  <div className="relative flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                    <button
+                  <div className="relative flex items-center md:order-2 space-x-3 md:space-x-3 rtl:space-x-reverse">
+                    
+                    {/* Nombre de user logueado */}
+                    {/* <button
                       type="button"
                       className="flex text-sm rounded-full md:me-0  items-center gap-1.5 "
                       id="user-menu-button"
@@ -159,7 +164,20 @@ export const Navbar = () => {
                         }
                       </p>
                       <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-circle-user-round w-8 h-8"><path d="M18 20a6 6 0 0 0-12 0"/><circle cx="12" cy="10" r="4"/><circle cx="12" cy="12" r="10"/></svg>
+                    </button> */}
+
+                   {/* Botón MI PERFIL */}
+                    <button
+                      className="bg-white text-black border border-gray-300 dark:bg-gray-800 dark:text-white dark:border-gray-600 transition-all duration-200 py-2 px-4 rounded-md flex items-center gap-2 group hover:bg-gray-100 dark:hover:bg-gray-700 hover:border-gray-400 dark:hover:border-gray-500 transform hover:scale-105 ml-4"
+                      onClick={() => setShowUserProfileModal(true)}
+                    >
+                      <FaUser className="text-xl dark:text-white text-black drop-shadow-sm cursor-pointer" />
+                      <span className="hidden sm:block group-hover:inline-block">
+                        {user.name + " " + user.lastname}
+                      </span>
                     </button>
+
+
 
                     {/* Menu Dropdown */}
                     {isMenuOpen && (
@@ -272,6 +290,13 @@ export const Navbar = () => {
           </ul>
         </div>
       </div>
+          <UserProfileModal 
+      showModal={showUserProfileModal} 
+      setShowModal={setShowUserProfileModal} 
+      user={user}
+      handleLogOut={handleLogOut}
+    />
+
       <Popup orderPopup={orderPopup} setOrderPopup={setOrderPopup}/>
       <PopupInitSession showModal={showInitSessionModal} setShowModal={setShowInitSessionModal} setShowRegisterModal={setShowRegisterModal} />
       <RegisterPopup showModal={showRegisterModal} setShowModal={setShowRegisterModal} />
