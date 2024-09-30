@@ -14,64 +14,20 @@ import {UserProfileModal } from '../Navbar/UserProfileModal';
 
 
 const Menu = [
-  {
-    id: 1,
-    name: "Inicio",
-    link: "/dashboard",
-  },
-  {
-    id: 2,
-    name: "Procesadores",
-    link: "/procesadores",
-  },
-  {
-    id: 3,
-    name: "Placas de Video",
-    link: "/placadevideo",
-  },
-  {
-    id: 4,
-    name: "Motherboards",
-    link: "/motherboards",
-  },
-  {
-    id: 5,
-    name: "Periféricos",
-    link: "/perifericos",
-  },
+  { id: 1, name: "Inicio", link: "/dashboard" },
+  { id: 2, name: "Procesadores", link: "/procesadores" },
+  { id: 3, name: "Placas de Video", link: "/placadevideo" },
+  { id: 4, name: "Motherboards", link: "/motherboards" },
+  { id: 5, name: "Periféricos", link: "/perifericos" },
 ];
 
 const DropdownLinks = [
-  {
-    id: 1,
-    name: "Cooler",
-    link: "/#cooler",
-  },
-  {
-    id: 2,
-    name: "Discos duros HDD",
-    link: "/#discos-durosHDD",
-  },
-  {
-    id: 3,
-    name: "Discos Solidos SSD",
-    link: "/#discos-solidosSSD",
-  },
-  {
-    id: 4,
-    name: "Fuentes",
-    link: "/#fuentes",
-  },
-  {
-    id: 5,
-    name: "Gabinetes",
-    link: "/#gabinetes",
-  },
-  {
-    id: 6,
-    name: "Memorias RAM",
-    link: "/#memorias-RAM",
-  },
+  { id: 1, name: "Cooler", link: "/cooler" },
+  { id: 2, name: "Discos duros HDD", link: "/#discos-durosHDD" },
+  { id: 3, name: "Discos Solidos SSD", link: "/#discos-solidosSSD" },
+  { id: 4, name: "Fuentes", link: "/#fuentes" },
+  { id: 5, name: "Gabinetes", link: "/#gabinetes" },
+  { id: 6, name: "Memorias RAM", link: "/#memorias-RAM" },
 ];
 
 export const Navbar = () => {
