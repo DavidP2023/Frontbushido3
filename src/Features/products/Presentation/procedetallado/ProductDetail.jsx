@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import Slider from "react-slick";
 import { FaCheckCircle, FaTruck } from 'react-icons/fa';
 import ryzen5600 from '../../../../assets/Procesador/ryzen5600.jpg';
@@ -183,7 +183,7 @@ const ProductDetail = () => {
             <div className="flex items-center">
               <FaCheckCircle className="text-green-500 mr-2" />
               <span className="text-gray-700 font-semibold">Garantía - 12 meses</span>
-              <a href="#" className="text-blue-500 ml-2 underline">Ver términos y condiciones</a>
+              <Link to="/terms-conditions" className="text-blue-500 ml-2 underline">Ver términos y condiciones</Link>
             </div>
             <div className="flex items-center">
               <FaCheckCircle className="text-green-500 mr-2" />

@@ -1,7 +1,7 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import Slider from "react-slick";
-import { FaCheckCircle, FaTruck } from 'react-icons/fa'; // Asegúrate de tener estos iconos
+import { FaCheckCircle, FaTruck } from 'react-icons/fa'; 
 import placa30601 from '../../../../assets/Placavideo/placa30601.png';
 import placa30602 from '../../../../assets/Placavideo/placa30602.png';
 import placa30603 from '../../../../assets/Placavideo/placa30603.png';
@@ -151,7 +151,7 @@ const ProductPlaca = () => {
             <div className="flex items-center">
               <FaCheckCircle className="text-green-500 mr-2" />
               <span className="text-gray-700 font-semibold">Garantía - 12 meses</span>
-              <a href="#" className="text-blue-500 ml-2 underline">Ver términos y condiciones</a>
+              <Link to="/terms-conditions" className="text-blue-500 ml-2 underline">Ver términos y condiciones</Link>
             </div>
             <div className="flex items-center">
               <FaCheckCircle className="text-green-500 mr-2" />

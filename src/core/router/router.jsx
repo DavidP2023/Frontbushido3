@@ -11,6 +11,8 @@ import ProductDetail from "../../Features/products/Presentation/procedetallado/P
 import ProductPlaca from "../../Features/products/Presentation/placadetallado/ProductPlaca";
 import ProductMother from "../../Features/products/Presentation/motherdetallado/ProductMother";
 import ProductPeriferico from "../../Features/products/Presentation/perifericodetallado/ProductPeriferico";
+import TermsAndConditions from "../../Features/products/Presentation/Pages/TermsAndConditions";
+
 
 
 export const AppRouter = () => {
@@ -25,21 +27,15 @@ export const AppRouter = () => {
                  <Route  path='/placadevideo' element={<PlacavideoPage/>}/> 
                  <Route  path='/motherboards' element={<MotherboardsPage/>}/> 
                  <Route  path='/perifericos' element={<PerifericosPage/>}/> 
+                 <Route path="/terms-conditions" element={<TermsAndConditions />} />
+
                   
-
-
-
                  {/* Rutas para los detalles de productos */}
                  <Route path="/procesadores/:id" element={<ProductDetail />} />
                  <Route path="/placavideo/:id" element={<ProductPlaca />} />
                  <Route path="/motherboards/:id" element={<ProductMother />} />
                  <Route path="/perifericos/:id" element={<ProductPeriferico />} />
                  
-
-                    
-
-
-
             </Routes>
             </Layout>
         </BrowserRouter>

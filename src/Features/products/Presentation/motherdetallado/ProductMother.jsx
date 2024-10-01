@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import Slider from "react-slick";
 import { FaCheckCircle, FaTruck } from 'react-icons/fa';
 import asusb5501 from '../../../../assets/mother/asusb5501.png';
@@ -146,7 +146,7 @@ const ProductPlaca = () => {
             <div className="flex items-center">
               <FaCheckCircle className="text-green-500 mr-2" />
               <span className="text-gray-700 font-semibold">Garantía - 12 meses</span>
-              <a href="#" className="text-blue-500 ml-2 underline">Ver términos y condiciones</a>
+              <Link to="/terms-conditions" className="text-blue-500 ml-2 underline">Ver términos y condiciones</Link>
             </div>
             <div className="flex items-center">
               <FaCheckCircle className="text-green-500 mr-2" />
@@ -191,13 +191,12 @@ const ProductPlaca = () => {
             </ul>
           </div>
         </div>
-
-        <div className="grid grid-cols-2 gap-8 border-b-2 pb-6 mb-6">
+        <div className="grid grid-cols-2 gap-8">
           <div>
-            <h4 className="font-semibold text-lg text-gray-700">Energía</h4>
+            <h4 className="font-semibold text-lg text-gray-700">Consumo de Energía</h4>
             <ul className="mt-3 space-y-2 text-gray-600">
-              <li>Consumo Energético: {product.details.power.energyConsumption}</li>
-              <li>Potencia Recomendada: {product.details.power.recommendedPower}</li>
+              <li>Consumo energético: {product.details.power.energyConsumption}</li>
+              <li>Recomendación de fuente: {product.details.power.recommendedPower}</li>
             </ul>
           </div>
           <div>
@@ -205,15 +204,16 @@ const ProductPlaca = () => {
             <ul className="mt-3 space-y-2 text-gray-600">
               <li>Longitud: {product.details.dimensions.length}</li>
               <li>Ancho: {product.details.dimensions.width}</li>
-              <li>Grosor: {product.details.dimensions.thickness}</li>
+              <li>Espesor: {product.details.dimensions.thickness}</li>
             </ul>
           </div>
         </div>
       </div>
     </div>
   ) : (
-    <div className="max-w-4xl mx-auto my-10 p-6 bg-white rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold text-center text-gray-900">Producto no encontrado</h2>
+    <div className="text-center py-20">
+      <h2 className="text-3xl font-semibold">Producto no encontrado</h2>
+      <p>El producto que estás buscando no está disponible.</p>
     </div>
   );
 };

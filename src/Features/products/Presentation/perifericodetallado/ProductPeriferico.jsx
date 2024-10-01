@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import Slider from "react-slick";
 import gpro1 from '../../../../assets/Perifericos/gpro1.png';
 import gpro2 from '../../../../assets/Perifericos/gpro2.png';
@@ -9,7 +9,7 @@ import gpro3 from '../../../../assets/Perifericos/gpro3.png';
 import razer1 from '../../../../assets/Perifericos/razer1.png';
 import razer2 from '../../../../assets/Perifericos/razer2.png';
 import razer3 from '../../../../assets/Perifericos/razer3.png';
-import { FaCheckCircle, FaTruck } from 'react-icons/fa'; // Asegúrate de tener estos iconos
+import { FaCheckCircle, FaTruck } from 'react-icons/fa'; 
 
 const ProductPlaca = () => {
   const { id } = useParams();
@@ -130,7 +130,7 @@ const ProductPlaca = () => {
             <div className="flex items-center">
               <FaCheckCircle className="text-green-500 mr-2" />
               <span className="text-gray-700 font-semibold">Garantía - 12 meses</span>
-              <a href="#" className="text-blue-500 ml-2 underline">Ver términos y condiciones</a>
+              <Link to="/terms-conditions" className="text-blue-500 ml-2 underline">Ver términos y condiciones</Link>
             </div>
             <div className="flex items-center">
               <FaCheckCircle className="text-green-500 mr-2" />
