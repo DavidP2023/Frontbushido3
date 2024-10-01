@@ -1,12 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import motherb550 from '../../../../assets/mother/motherb550.png';  
 import motherZ490 from '../../../../assets/mother/motherZ490.png';
 
 export const MotherboardsPage = () => {
-
-  
-
   const categories = [
     'Componentes de PC',
     'Coolers',
@@ -39,6 +38,17 @@ export const MotherboardsPage = () => {
     }
   ];
 
+  // Estado para los productos favoritos
+  const [favoriteProducts, setFavoriteProducts] = useState({});
+
+  const toggleFavorite = (e, productId) => {
+    e.preventDefault(); 
+    setFavoriteProducts(prevState => ({
+      ...prevState,
+      [productId]: !prevState[productId]
+    }));
+  };
+
   return (
     <div className="flex">
       {/* Sidebar */}
@@ -61,8 +71,18 @@ export const MotherboardsPage = () => {
         <h1 className="text-center text-4xl font-semibold mb-12 text-orange-500">Motherboards</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {products.map((product) => (
-            <Link to={`/motherboards/${product.id}`} key={product.id}>
-              <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white hover:shadow-2xl transition-shadow duration-300 h-full flex flex-col">
+            <Link to={`/motherboards/${product.id}`} key={product.id} className="relative">
+              <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white hover:shadow-2xl transition-shadow duration-300 h-full flex flex-col relative">
+                {/* Corazón en la esquina superior derecha */}
+                <button
+                  onClick={(e) => toggleFavorite(e, product.id)}
+                  className="absolute top-2 right-2 text-gray-400 hover:text-red-500 focus:outline-none z-10"
+                >
+                  <FontAwesomeIcon
+                    icon={faHeart}
+                    className={favoriteProducts[product.id] ? 'text-red-500' : 'text-gray-400'}
+                  />
+                </button>
                 <img className="w-full" src={product.image} alt={product.name} />
                 <div className="px-6 py-4 flex-grow">
                   <div className="font-semibold text-xl mb-2 text-gray-800">{product.name}</div>
