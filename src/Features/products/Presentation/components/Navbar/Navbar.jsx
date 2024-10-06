@@ -11,7 +11,15 @@ import { PopupRegisterSucess } from "../Popup/PopupRegisterSucess";
 import { RegisterPopup } from "../Popup/RegisterPopup";
 import { useAuthenticationStorage } from "../../../../user/data/local/user_local_data_sources";
 import {UserProfileModal } from '../Navbar/UserProfileModal';
-
+import { 
+  FacebookShareButton, 
+  TwitterShareButton, 
+  WhatsappShareButton, 
+  FacebookIcon, 
+  TwitterIcon, 
+  WhatsappIcon 
+} from "react-share";
+import { FaCheckCircle, FaTruck, FaShareAlt } from 'react-icons/fa';
 
 const Menu = [
   { id: 1, name: "Inicio", link: "/dashboard" },
@@ -31,6 +39,17 @@ const DropdownLinks = [
 ];
 
 export const Navbar = () => {
+  const shareUrl = "https://bushido-tech.netlify.app/"; 
+  const shareMessage = "¡Recomendamos este increíble sitio web de tecnología! Encuentra los mejores componentes de PC a precios competitivos. Garantía de calidad y servicio al cliente excepcional. ¡Te esperamos!";
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const [showInitSessionModal, setShowInitSessionModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [orderPopup, setOrderPopup] = useState(false);
@@ -209,43 +228,122 @@ export const Navbar = () => {
       </div>
 
       {/* Navbar Inferior */}
-      <div className={`bg-primary/30 py-2 ${menuOpen ? "block" : "hidden"} sm:block`}>
-        <div className="container mx-auto flex flex-col sm:flex-row justify-center">
-          <ul className="flex flex-col sm:flex-row items-center gap-6">
-            {Menu.map((data) => (
-              <li key={data.id}>
-                <Link
-                  to={data.link}
-                  className="text-white dark:text-gray-200 px-4 py-2 hover:text-orange-300 transition duration-200"
-                >
-                  {data.name}
-                </Link>
-              </li>
-            ))}
-            {/* Dropdown Simple y Links */}
-            <li className="group relative cursor-pointer">
-              <a href="#" className="flex items-center gap-[2px] py-2 text-white dark:text-gray-200 hover:text-orange-300 transition duration-200">
-                Más
-                <FaCaretDown className="ml-1 transition duration-200 group-hover:rotate-180" />
-              </a>
-              <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 z-50 hidden group-hover:block w-[200px] rounded-md bg-white p-2 text-black shadow-lg">
-                <ul>
-                  {DropdownLinks.map((data) => (
-                    <li key={data.id}>
-                      <a
-                        href={data.link}
-                        className="block w-full rounded-md p-2 hover:bg-orange-200 transition duration-200"
-                      >
-                        {data.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
+ <div className={`bg-primary/30 py-2 ${menuOpen ? "block" : "hidden"} sm:block`}>
+    <div className="container mx-auto flex flex-col sm:flex-row justify-center">
+      <ul className="flex flex-col sm:flex-row items-center gap-6">
+        {Menu.map((data) => (
+          <li key={data.id}>
+            <Link
+              to={data.link}
+              className="text-white dark:text-gray-200 px-4 py-2 hover:text-orange-300 transition duration-200"
+            >
+              {data.name}
+            </Link>
+          </li>
+        ))}
+        {/* Dropdown Simple y Links */}
+        <li className="group relative cursor-pointer">
+          <a href="#" className="flex items-center gap-[2px] py-2 text-white dark:text-gray-200 hover:text-orange-300 transition duration-200">
+            Más
+            <FaCaretDown className="ml-1 transition duration-200 group-hover:rotate-180" />
+          </a>
+          <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 z-50 hidden group-hover:block w-[200px] rounded-md bg-white p-2 text-black shadow-lg">
+            <ul>
+              {DropdownLinks.map((data) => (
+                <li key={data.id}>
+                  <a
+                    href={data.link}
+                    className="block w-full rounded-md p-2 hover:bg-orange-200 transition duration-200"
+                  >
+                    {data.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </li>
+
+        {/* Botones para compartir en redes sociales */}
+        {/* <li className="flex items-center gap-2">
+          <FacebookShareButton url={shareUrl} quote={shareMessage}>
+            <FacebookIcon size={32} round={true} />
+          </FacebookShareButton>
+          <TwitterShareButton url={shareUrl} title={shareMessage}>
+            <TwitterIcon size={32} round={true} />
+          </TwitterShareButton>
+          <WhatsappShareButton url={shareUrl} title={shareMessage}>
+            <WhatsappIcon size={32} round={true} />
+          </WhatsappShareButton>
+        </li> */}
+
+<div className="flex space-x-4 mt-1">
+  <button
+    onClick={openModal}
+    className="flex items-center bg-gray-800 text-white text-lg px-4 py-2 rounded-lg hover:bg-gray-900 transition duration-300 ease-in-out shadow-lg dark:text-white dark:border-gray-600"
+  >
+    <FaShareAlt className="mr-2" /> Compartir
+  </button>
+</div>
+
+{isModalOpen && (
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 ">
+    <div className="bg-white dark:bg-gray-800 rounded-lg p-6 w-11/12 max-w-lg relative shadow-lg">
+      <button onClick={closeModal} className="absolute top-2 right-2 text-gray-600 hover:text-gray-900 text-3xl dark:text-white dark:hover:text-gray-300">
+        &times;
+      </button>
+      <h2 className="text-xl font-bold mb-4 flex items-center">Compartir BushidoTech <FaShareAlt className="ml-2" /> </h2>
+      <p className="text-gray-700 dark:text-white mb-6">Encuentra los mejores componentes de PC a precios competitivos. Garantía de calidad y servicio al cliente excepcional.</p>
+
+      <div>
+  {/* Texto explicativo */}
+  <h3 className="font-semibold text-lg dark:text-white">Selecciona tu red social:</h3>
+
+  {/* Botones para compartir en redes sociales */}
+  <li className="flex items-center gap-2 mt-2">
+    <a 
+      href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`} 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="hover:opacity-80"
+    >
+      <FacebookIcon size={32} round={true} />
+    </a>
+    <a 
+      href={`https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareMessage}`} 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="hover:opacity-80"
+    >
+      <TwitterIcon size={32} round={true} />
+    </a>
+    <a 
+      href={`https://wa.me/?text=${shareMessage}%20${shareUrl}`} 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="hover:opacity-80"
+    >
+      <WhatsappIcon size={32} round={true} />
+    </a>
+  </li>
+</div>
+
+
+      {/* <button
+        onClick={closeModal}
+        className="mt-4 bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-900 transition duration-300 ease-in-out"
+      >
+        Cerrar
+      </button> */}
+    </div>
+  </div>
+)}
+
+
+
+      </ul>
+    </div>
+  </div>
+
           <UserProfileModal 
       showModal={showUserProfileModal} 
       setShowModal={setShowUserProfileModal} 

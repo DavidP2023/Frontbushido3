@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Slider from "react-slick";
-import { FaCheckCircle, FaTruck } from 'react-icons/fa';
+import { FaCheckCircle, FaTruck, FaShareAlt, FaFacebook, FaTwitter, FaWhatsapp } from 'react-icons/fa'; 
 import asusb5501 from '../../../../assets/mother/asusb5501.png';
 import asusb5502 from '../../../../assets/mother/asusb5502.png';
 import asusb5503 from '../../../../assets/mother/asusb5503.png';
@@ -13,6 +13,7 @@ import msi3 from '../../../../assets/mother/msi3.png';
 
 const ProductPlaca = () => {
   const { id } = useParams();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const products = [
     {
@@ -111,6 +112,16 @@ const ProductPlaca = () => {
     prevArrow: <div style={{ fontSize: '40px', color: '#333' }}>&#10094;</div>,
   };
 
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const productUrl = `https://bushidotech.com/product/${id}`;
+
   return product ? (
     <div className="max-w-4xl mx-auto my-10 p-6 bg-white rounded-lg shadow-md">
       <div className="flex flex-col md:flex-row items-start md:items-center">
@@ -158,9 +169,24 @@ const ProductPlaca = () => {
             </div>
           </div>
 
-          <button className="w-full md:w-auto bg-orange-600 text-white text-lg px-8 py-4 rounded-lg hover:bg-orange-700 transition duration-300 ease-in-out shadow-lg mt-4"> {/* Añadido mt-4 */}
+          <p className="text-green-600 font-semibold mb-4">{product.availability}</p>
+
+          {/* Botones compartir y sumar al carrito */}
+          <div className="flex space-x-4 mt-8">
+            <button
+              onClick={openModal}
+              className="flex items-center bg-gray-800 text-white text-lg px-6 py-3 rounded-lg hover:bg-gray-900 transition duration-300 ease-in-out shadow-lg"
+            >
+              <FaShareAlt className="mr-2" /> Compartir
+            </button>
+            <button className="w-full md:w-auto bg-orange-600 text-white text-lg px-8 py-4 rounded-lg hover:bg-orange-700 transition duration-300 ease-in-out shadow-lg">
+              Sumar al Carrito
+            </button>
+          </div>
+
+          {/* <button className="w-full md:w-auto bg-orange-600 text-white text-lg px-8 py-4 rounded-lg hover:bg-orange-700 transition duration-300 ease-in-out shadow-lg mt-4"> 
             Comprar Ahora
-          </button>
+          </button> */}
         </div>
       </div>
 
@@ -209,12 +235,58 @@ const ProductPlaca = () => {
           </div>
         </div>
       </div>
+    
+      {isModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white rounded-lg p-6 w-11/12 max-w-lg relative shadow-lg">
+            <button onClick={closeModal} className="absolute top-2 right-2 text-gray-600 hover:text-gray-900">
+              &times;
+            </button>
+            <h2 className="text-xl font-bold mb-4">Compartir este producto</h2>
+            <p className="text-gray-700 mb-6">Puedes compartir el siguiente enlace:</p>
+            <input
+              type="text"
+              value={productUrl}
+              readOnly
+              className="border rounded-lg w-full p-2 text-gray-800 mb-4"
+            />
+            <button 
+              onClick={() => {
+                navigator.clipboard.writeText(productUrl);
+                alert('Enlace copiado al portapapeles!');
+              }} 
+              className="bg-gray-300 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-400 transition duration-300 ease-in-out mb-4"
+            >
+              Copiar enlace
+            </button>
+            
+            <div className="my-4 border-t pt-4">
+              <h3 className="font-semibold text-lg">Resumen del Producto</h3>
+              <p className="text-gray-600">{product.description}</p>
+            </div>
+            
+            <h3 className="font-semibold text-lg">Comparte en:</h3>
+            <div className="flex space-x-4 mt-2">
+              <a href={`https://www.facebook.com/sharer/sharer.php?u=${productUrl}`} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800">
+                <FaFacebook size={24} /> 
+              </a>
+              <a href={`https://twitter.com/intent/tweet?url=${productUrl}`} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-600">
+                <FaTwitter size={24} /> 
+              </a>
+              <a href={`https://wa.me/?text=${productUrl}`} target="_blank" rel="noopener noreferrer" className="text-green-500 hover:text-green-700">
+              <FaWhatsapp size={24} /> 
+              </a>
+            </div>
+            
+            <button onClick={closeModal} className="bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 transition duration-300 ease-in-out mt-4">
+              Cerrar
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   ) : (
-    <div className="text-center py-20">
-      <h2 className="text-3xl font-semibold">Producto no encontrado</h2>
-      <p>El producto que estás buscando no está disponible.</p>
-    </div>
+    <p className="text-center text-gray-700">Producto no encontrado.</p>
   );
 };
 

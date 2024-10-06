@@ -8,6 +8,15 @@ import ryzen56003 from '../../../../assets/Procesador/ryzen56003.png';
 import ryzen58003 from '../../../../assets/Procesador/ryzen85003.png';
 import ryzen58002 from '../../../../assets/Procesador/ryzen85002.png';
 import ryzen58001 from '../../../../assets/Procesador/ryzen85001.png';
+import { FaFacebook, FaTwitter, FaWhatsapp } from 'react-icons/fa';
+import { 
+  FacebookShareButton, 
+  TwitterShareButton, 
+  WhatsappShareButton, 
+  FacebookIcon, 
+  TwitterIcon, 
+  WhatsappIcon 
+} from "react-share";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -216,13 +225,13 @@ const ProductDetail = () => {
             <h3 className="font-semibold text-lg">Comparte en:</h3>
             <div className="flex space-x-4 mt-2">
               <a href={`https://www.facebook.com/sharer/sharer.php?u=${productUrl}`} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800">
-                Facebook
+                <FaFacebook size={24} /> 
               </a>
               <a href={`https://twitter.com/intent/tweet?url=${productUrl}`} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-600">
-                Twitter
+                <FaTwitter size={24} /> 
               </a>
               <a href={`https://wa.me/?text=${productUrl}`} target="_blank" rel="noopener noreferrer" className="text-green-500 hover:text-green-700">
-                WhatsApp
+              <FaWhatsapp size={24} /> 
               </a>
             </div>
             
