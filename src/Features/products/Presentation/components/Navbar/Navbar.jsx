@@ -94,12 +94,27 @@ export const Navbar = () => {
             </button>
           </div>
 
-          {/* Barra de Búsqueda */}
+
+
           <div className="flex items-center gap-4">
+
+            {/* Botón compartir */}
+            <div className="flex space-x-4 mt-0.8">
+              <button
+                onClick={openModal}
+                className="flex items-center bg-gray-800 text-white text-lg px-4 py-1.5 rounded-lg hover:bg-gray-900 transition duration-300 ease-in-out shadow-lg dark:text-white dark:border-gray-600"
+                >
+                <FaShareAlt className="mr-2" /> Compartir
+              </button>
+            </div>
+            
+
+            {/* Barra de Búsqueda */}
             <div className="relative group hidden sm:block">
               <input
                 type="text"
                 placeholder="Buscar"
+                maxLength={30}
                 className="w-[200px] sm:w-[300px] group-hover:w-[350px] transition-all duration-300 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:border-1 focus:border-primary dark:border-gray-500 dark:bg-gray-800"
               />
               <IoMdSearch className="text-gray-500 group-hover:text-primary absolute top-1/2 -translate-y-1/2 right-3" />
@@ -276,14 +291,14 @@ export const Navbar = () => {
           </WhatsappShareButton>
         </li> */}
 
-<div className="flex space-x-4 mt-1">
+{/* <div className="flex space-x-4 mt-1">
   <button
     onClick={openModal}
     className="flex items-center bg-gray-800 text-white text-lg px-4 py-2 rounded-lg hover:bg-gray-900 transition duration-300 ease-in-out shadow-lg dark:text-white dark:border-gray-600"
   >
     <FaShareAlt className="mr-2" /> Compartir
   </button>
-</div>
+</div> */}
 
 {isModalOpen && (
   <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 ">
