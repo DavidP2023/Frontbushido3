@@ -38,11 +38,6 @@ export const AppRouter = () => {
 
                     } />
 
-
-
-
-
-
                     {/* Rutas para los detalles de productos */}
                     <Route path="/procesadores/:id" element={<ProductDetail />} />
                     <Route path="/placavideo/:id" element={<ProductPlaca />} />
