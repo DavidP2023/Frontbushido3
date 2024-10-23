@@ -27,8 +27,7 @@ const createProductFormSchema = yup.object().shape({
     .required('El stock es requerido'),
   features: yup
     .array()
-    .of(yup.string())
-    .min(1, 'Debe agregar al menos una característica'),
+    .of(yup.string()),
   garantia: yup
     .array()
     .of(yup.string())
@@ -56,7 +55,7 @@ export const useCreateProductController = () => {
   });
 
   const { loading, mutate, error, data } = useCreateProductMutationHook();
-
+  console.log( data?.createProduct?.brand, 'PRODUCTO brand')
   const handleCreateProductClick = (values) => {
     const product = new Product();
 
@@ -81,5 +80,6 @@ export const useCreateProductController = () => {
     handleBlur,
     values,
     touched,
+    data
   };
 };
