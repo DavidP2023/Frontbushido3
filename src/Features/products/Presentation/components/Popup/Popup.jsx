@@ -4,11 +4,11 @@ import { useMemo, useState } from "react";
 
 export const Popup = ({ orderPopup, setOrderPopup, shoppingCart, cleanShoppingCart }) => {
 
-  const handleCleanCart = () => { 
+  const handleCleanCart = () => {
     cleanShoppingCart();
     setOrderPopup(false);
 
-   }
+  }
 
   const totalAmount = useMemo(() => {
     let total = 0
@@ -79,7 +79,7 @@ export const Popup = ({ orderPopup, setOrderPopup, shoppingCart, cleanShoppingCa
                     handleCleanCart
                   }
                 >
-                Limpiar Carrito
+                  Limpiar Carrito
                 </button>
 
               </div>
