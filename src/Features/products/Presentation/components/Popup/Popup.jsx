@@ -11,11 +11,15 @@ export const Popup = ({ orderPopup, setOrderPopup, shoppingCart, cleanShoppingCa
   }
 
   const totalAmount = useMemo(() => {
-    let total = 0
-    for (const element of shoppingCart) {
-      total += element.precio
+    if (shoppingCart) {
+      if (shoppingCart?.length === 0) return 0
+      let total = 0
+      for (const element of shoppingCart) {
+        total += element.precio
+      }
+      return total;
     }
-    return total;
+    return 0;
   }, [shoppingCart])
 
   return (
@@ -37,7 +41,7 @@ export const Popup = ({ orderPopup, setOrderPopup, shoppingCart, cleanShoppingCa
               </div>
               <div className=" py-5">
                 {
-                  shoppingCart.map(cart => {
+                  shoppingCart?.map(cart => {
 
                     return (
 

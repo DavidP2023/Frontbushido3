@@ -10,17 +10,17 @@ import { Link } from "react-router-dom";
 import { PopupRegisterSucess } from "../Popup/PopupRegisterSucess";
 import { RegisterPopup } from "../Popup/RegisterPopup";
 import { useAuthenticationStorage } from "../../../../user/data/local/user_local_data_sources";
-import {UserProfileModal } from '../Navbar/UserProfileModal';
+import { UserProfileModal } from '../Navbar/UserProfileModal';
 
 
 
-import { 
-  FacebookShareButton, 
-  TwitterShareButton, 
-  WhatsappShareButton, 
-  FacebookIcon, 
-  TwitterIcon, 
-  WhatsappIcon 
+import {
+  FacebookShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+  FacebookIcon,
+  TwitterIcon,
+  WhatsappIcon
 } from "react-share";
 import { FaCheckCircle, FaTruck, FaShareAlt } from 'react-icons/fa';
 import { useProductLocalStorage } from "../../data/local/products_local_data_sources";
@@ -30,7 +30,9 @@ import { useProductLocalStorage } from "../../data/local/products_local_data_sou
 
 export const Navbar = () => {
 
-  const {shoppingCart , cleanShoppingCart} = useProductLocalStorage();
+  const { shoppingCart, cleanShoppingCart } = useProductLocalStorage();
+
+  console.log(shoppingCart)
 
 
   const Menu = [
@@ -40,19 +42,19 @@ export const Navbar = () => {
     { id: 4, name: "Motherboards", link: "/motherboards" },
     { id: 5, name: "Periféricos", link: "/perifericos" },
   ];
-  
+
   const DropdownLinks = [
-    { id: 1, name: "Crear producto", link: "/create-product", showifAdmin:true },
-    { id: 2, name: "Cooler", link: "/cooler" , showifAdmin:false },
-    { id: 3, name: "Discos duros HDD", link: "/#discos-durosHDD" , showifAdmin:false},
-    { id: 4, name: "Discos Solidos SSD", link: "/#discos-solidosSSD", showifAdmin:false },
-    { id: 5, name: "Fuentes", link: "/#fuentes" , showifAdmin:false},
-    { id: 6, name: "Gabinetes", link: "/#gabinetes" , showifAdmin:false},
-    { id: 7, name: "Memorias RAM", link: "/#memorias-RAM" , showifAdmin:false},
-  
+    { id: 1, name: "Crear producto", link: "/create-product", showifAdmin: true },
+    { id: 2, name: "Cooler", link: "/cooler", showifAdmin: false },
+    { id: 3, name: "Discos duros HDD", link: "/#discos-durosHDD", showifAdmin: false },
+    { id: 4, name: "Discos Solidos SSD", link: "/#discos-solidosSSD", showifAdmin: false },
+    { id: 5, name: "Fuentes", link: "/#fuentes", showifAdmin: false },
+    { id: 6, name: "Gabinetes", link: "/#gabinetes", showifAdmin: false },
+    { id: 7, name: "Memorias RAM", link: "/#memorias-RAM", showifAdmin: false },
+
   ];
 
-  const shareUrl = "https://bushido-tech.netlify.app/"; 
+  const shareUrl = "https://bushido-tech.netlify.app/";
   const shareMessage = "¡Recomendamos este increíble sitio web de tecnología! Encuentra los mejores componentes de PC a precios competitivos. Garantía de calidad y servicio al cliente excepcional. ¡Te esperamos!";
   const openModal = () => {
     setIsModalOpen(true);
@@ -116,11 +118,11 @@ export const Navbar = () => {
               <button
                 onClick={openModal}
                 className="flex items-center bg-gray-800 text-white text-lg px-4 py-1.5 rounded-lg hover:bg-gray-900 transition duration-300 ease-in-out shadow-lg dark:text-white dark:border-gray-600"
-                >
+              >
                 <FaShareAlt className="mr-2" /> Compartir
               </button>
             </div>
-            
+
 
             {/* Barra de Búsqueda */}
             <div className="relative group hidden sm:block">
@@ -140,7 +142,7 @@ export const Navbar = () => {
             >
               <FaCartShopping className="text-xl text-white drop-shadow-sm cursor-pointer" />
               <span className="hidden sm:block group-hover:inline-block">{`Ordenar(${shoppingCart.length})`
-                }</span>
+              }</span>
             </button>
 
             {/* Cambio de Modo Oscuro */}
@@ -153,7 +155,7 @@ export const Navbar = () => {
                 <>
 
                   <div className="relative flex items-center md:order-2 space-x-3 md:space-x-3 rtl:space-x-reverse">
-                    
+
                     {/* Nombre de user logueado */}
                     {/* <button
                       type="button"
@@ -170,7 +172,7 @@ export const Navbar = () => {
                       <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-circle-user-round w-8 h-8"><path d="M18 20a6 6 0 0 0-12 0"/><circle cx="12" cy="10" r="4"/><circle cx="12" cy="12" r="10"/></svg>
                     </button> */}
 
-                   {/* Botón MI PERFIL */}
+                    {/* Botón MI PERFIL */}
                     <button
                       className="bg-white text-black border border-gray-300 dark:bg-gray-800 dark:text-white dark:border-gray-600 transition-all duration-200 py-2 px-4 rounded-md flex items-center gap-2 group hover:bg-gray-100 dark:hover:bg-gray-700 hover:border-gray-400 dark:hover:border-gray-500 transform hover:scale-105 ml-4"
                       onClick={() => setShowUserProfileModal(true)}
@@ -188,7 +190,7 @@ export const Navbar = () => {
                       <div
                         className="absolute right-0 z-50 mt-2  bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
                         id="user-dropdown"
-                        style={{ top: '100%', right: 0 }} 
+                        style={{ top: '100%', right: 0 }}
                       >
                         <div className="px-4 py-3">
                           <span className="block text-sm text-gray-900 dark:text-white">
@@ -205,7 +207,7 @@ export const Navbar = () => {
                               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white w-full"
                             >
                               Cerrar Sesion
-                              
+
                             </button>
                           </li>
                         </ul>
@@ -257,46 +259,47 @@ export const Navbar = () => {
       </div>
 
       {/* Navbar Inferior */}
- <div className={`bg-primary/30 py-2 ${menuOpen ? "block" : "hidden"} sm:block`}>
-    <div className="container mx-auto flex flex-col sm:flex-row justify-center">
-      <ul className="flex flex-col sm:flex-row items-center gap-6">
-        {Menu.map((data) => (
-          <li key={data.id}>
-            <Link
-              to={data.link}
-              className="text-white dark:text-gray-200 px-4 py-2 hover:text-orange-300 transition duration-200"
-            >
-              {data.name}
-            </Link>
-          </li>
-        ))}
-        {/* Dropdown Simple y Links */}
-        <li className="group relative cursor-pointer">
-          <a href="#" className="flex items-center gap-[2px] py-2 text-white dark:text-gray-200 hover:text-orange-300 transition duration-200">
-            Más
-            <FaCaretDown className="ml-1 transition duration-200 group-hover:rotate-180" />
-          </a>
-          <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 z-50 hidden group-hover:block w-[200px] rounded-md bg-white p-2 text-black shadow-lg">
-            <ul>
-              {DropdownLinks.map((data) => {
-                
-                if(data.showifAdmin && !user?.rol?.includes("admin")) {
-                 return 
-                }
-                return ( <li key={data.id}>
-                  <a
-                    href={data.link}
-                    className="block w-full rounded-md p-2 hover:bg-orange-200 transition duration-200"
-                  >
-                    {data.name}
-                  </a>
-                </li>)})}
-            </ul>
-          </div>
-        </li>
+      <div className={`bg-primary/30 py-2 ${menuOpen ? "block" : "hidden"} sm:block`}>
+        <div className="container mx-auto flex flex-col sm:flex-row justify-center">
+          <ul className="flex flex-col sm:flex-row items-center gap-6">
+            {Menu.map((data) => (
+              <li key={data.id}>
+                <Link
+                  to={data.link}
+                  className="text-white dark:text-gray-200 px-4 py-2 hover:text-orange-300 transition duration-200"
+                >
+                  {data.name}
+                </Link>
+              </li>
+            ))}
+            {/* Dropdown Simple y Links */}
+            <li className="group relative cursor-pointer">
+              <a href="#" className="flex items-center gap-[2px] py-2 text-white dark:text-gray-200 hover:text-orange-300 transition duration-200">
+                Más
+                <FaCaretDown className="ml-1 transition duration-200 group-hover:rotate-180" />
+              </a>
+              <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 z-50 hidden group-hover:block w-[200px] rounded-md bg-white p-2 text-black shadow-lg">
+                <ul>
+                  {DropdownLinks.map((data) => {
 
-        {/* Botones para compartir en redes sociales */}
-        {/* <li className="flex items-center gap-2">
+                    if (data.showifAdmin && !user?.rol?.includes("admin")) {
+                      return
+                    }
+                    return (<li key={data.id}>
+                      <a
+                        href={data.link}
+                        className="block w-full rounded-md p-2 hover:bg-orange-200 transition duration-200"
+                      >
+                        {data.name}
+                      </a>
+                    </li>)
+                  })}
+                </ul>
+              </div>
+            </li>
+
+            {/* Botones para compartir en redes sociales */}
+            {/* <li className="flex items-center gap-2">
           <FacebookShareButton url={shareUrl} quote={shareMessage}>
             <FacebookIcon size={32} round={true} />
           </FacebookShareButton>
@@ -308,7 +311,7 @@ export const Navbar = () => {
           </WhatsappShareButton>
         </li> */}
 
-{/* <div className="flex space-x-4 mt-1">
+            {/* <div className="flex space-x-4 mt-1">
   <button
     onClick={openModal}
     className="flex items-center bg-gray-800 text-white text-lg px-4 py-2 rounded-lg hover:bg-gray-900 transition duration-300 ease-in-out shadow-lg dark:text-white dark:border-gray-600"
@@ -317,71 +320,71 @@ export const Navbar = () => {
   </button>
 </div> */}
 
-{isModalOpen && (
-  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 ">
-    <div className="bg-white dark:bg-gray-800 rounded-lg p-6 w-11/12 max-w-lg relative shadow-lg">
-      <button onClick={closeModal} className="absolute top-2 right-2 text-gray-600 hover:text-gray-900 text-3xl dark:text-white dark:hover:text-gray-300">
-        &times;
-      </button>
-      <h2 className="text-xl font-bold mb-4 flex items-center">Compartir BushidoTech <FaShareAlt className="ml-2" /> </h2>
-      <p className="text-gray-700 dark:text-white mb-6">Encuentra los mejores componentes de PC a precios competitivos. Garantía de calidad y servicio al cliente excepcional.</p>
+            {isModalOpen && (
+              <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 ">
+                <div className="bg-white dark:bg-gray-800 rounded-lg p-6 w-11/12 max-w-lg relative shadow-lg">
+                  <button onClick={closeModal} className="absolute top-2 right-2 text-gray-600 hover:text-gray-900 text-3xl dark:text-white dark:hover:text-gray-300">
+                    &times;
+                  </button>
+                  <h2 className="text-xl font-bold mb-4 flex items-center">Compartir BushidoTech <FaShareAlt className="ml-2" /> </h2>
+                  <p className="text-gray-700 dark:text-white mb-6">Encuentra los mejores componentes de PC a precios competitivos. Garantía de calidad y servicio al cliente excepcional.</p>
 
-      <div>
-  {/* Texto explicativo */}
-  <h3 className="font-semibold text-lg dark:text-white">Selecciona tu red social:</h3>
+                  <div>
+                    {/* Texto explicativo */}
+                    <h3 className="font-semibold text-lg dark:text-white">Selecciona tu red social:</h3>
 
-  {/* Botones para compartir en redes sociales */}
-  <li className="flex items-center gap-2 mt-2">
-    <a 
-      href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`} 
-      target="_blank" 
-      rel="noopener noreferrer"
-      className="hover:opacity-80"
-    >
-      <FacebookIcon size={32} round={true} />
-    </a>
-    <a 
-      href={`https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareMessage}`} 
-      target="_blank" 
-      rel="noopener noreferrer"
-      className="hover:opacity-80"
-    >
-      <TwitterIcon size={32} round={true} />
-    </a>
-    <a 
-      href={`https://wa.me/?text=${shareMessage}%20${shareUrl}`} 
-      target="_blank" 
-      rel="noopener noreferrer"
-      className="hover:opacity-80"
-    >
-      <WhatsappIcon size={32} round={true} />
-    </a>
-  </li>
-</div>
+                    {/* Botones para compartir en redes sociales */}
+                    <li className="flex items-center gap-2 mt-2">
+                      <a
+                        href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:opacity-80"
+                      >
+                        <FacebookIcon size={32} round={true} />
+                      </a>
+                      <a
+                        href={`https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareMessage}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:opacity-80"
+                      >
+                        <TwitterIcon size={32} round={true} />
+                      </a>
+                      <a
+                        href={`https://wa.me/?text=${shareMessage}%20${shareUrl}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:opacity-80"
+                      >
+                        <WhatsappIcon size={32} round={true} />
+                      </a>
+                    </li>
+                  </div>
 
 
-      {/* <button
+                  {/* <button
         onClick={closeModal}
         className="mt-4 bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-900 transition duration-300 ease-in-out"
       >
         Cerrar
       </button> */}
-    </div>
-  </div>
-)}
+                </div>
+              </div>
+            )}
 
 
 
-      </ul>
-    </div>
-  </div>
+          </ul>
+        </div>
+      </div>
 
-          <UserProfileModal 
-      showModal={showUserProfileModal} 
-      setShowModal={setShowUserProfileModal} 
-      user={user}
-      handleLogOut={handleLogOut}
-    />
+      <UserProfileModal
+        showModal={showUserProfileModal}
+        setShowModal={setShowUserProfileModal}
+        user={user}
+        handleLogOut={handleLogOut}
+      />
 
       <Popup orderPopup={orderPopup} setOrderPopup={setOrderPopup} shoppingCart={shoppingCart} cleanShoppingCart={cleanShoppingCart} />
       <PopupInitSession showModal={showInitSessionModal} setShowModal={setShowInitSessionModal} setShowRegisterModal={setShowRegisterModal} />
