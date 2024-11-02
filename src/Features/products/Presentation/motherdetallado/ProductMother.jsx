@@ -10,96 +10,109 @@ import asusb5503 from '../../../../assets/mother/asusb5503.png';
 import msi1 from '../../../../assets/mother/msi1.png';
 import msi2 from '../../../../assets/mother/msi2.png';
 import msi3 from '../../../../assets/mother/msi3.png';
+import { useGetProductByIdQueryHook } from '../hooks/use_get_product_by_id_hook';
+import { useProductLocalStorage } from '../data/local/products_local_data_sources';
 
 const ProductPlaca = () => {
   const { id } = useParams();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { data:product, loading, error } = useGetProductByIdQueryHook(id);
+  const {setProductsInShoppingCart} = useProductLocalStorage();
+  const handleAddProductToShoppingCart = ()=> {
+    setProductsInShoppingCart([product]);
+    console.log(product);
 
-  const products = [
-    {
-      id: 1,
-      name: "Motherboard ASUS ROG Strix B550-F Gaming",
-      priceCurrent: "308,300",
-      priceBefore: "311,400",
-      description: "La ASUS ROG Strix B550-F Gaming es una placa madre diseñada para gamers y entusiastas, ofreciendo compatibilidad con los últimos procesadores AMD Ryzen y características avanzadas como PCIe 4.0, Wi-Fi 6, y un diseño robusto para un rendimiento excepcional.",
-      availability: "En stock y listo para envío.",
-      images: [
-        asusb5501,
-        asusb5502,
-        asusb5503
-      ],
-      details: {
-        general: {
-          socket: "AM4",
-          chipset: "AMD B550",
-          memory: "4 x DIMM, máx. 128 GB, DDR4",
-          expansionSlots: "2 x PCIe 4.0 x16, 3 x PCIe 3.0 x1",
-          storage: "2 x M.2, 6 x SATA 6Gb/s",
-          network: "Intel I225-V 2.5Gb Ethernet",
-          audio: "ROG SupremeFX 7.1 Surround Sound"
-        },
-        connectivity: {
-          vga: "No",
-          dvi: "No",
-          hdmi: "1x HDMI 2.1",
-          displayPorts: "3x DisplayPort 1.4a",
-          usbTypeC: "No"
-        },
-        power: {
-          energyConsumption: "170 W",
-          recommendedPower: "550 W"
-        },
-        dimensions: {
-          length: "242 mm",
-          width: "112 mm",
-          thickness: "40 mm"
-        }
-      }
-    },
-    {
-      id: 2,
-      name: "Motherboard MSI MPG Z490 Gaming Edge WiFi",
-      priceCurrent: "379,350",
-      priceBefore: "383,150",
-      description: "La MSI MPG Z490 Gaming Edge WiFi es una placa madre de alto rendimiento diseñada para entusiastas y gamers, con soporte para los últimos procesadores Intel Core de décima generación, conectividad Wi-Fi 6, y un diseño avanzado para un rendimiento y estabilidad excepcionales.",
-      availability: "En stock y listo para envío.",
-      images: [
-        msi1,
-        msi2,
-        msi3
-      ],
-      details: {
-        general: {
-          socket: "LGA 1200",
-          chipset: "Intel Z490",
-          memory: "4 x DIMM, máx. 128 GB, DDR4",
-          expansionSlots: "2 x PCIe 3.0 x16, 3 x PCIe 3.0 x1",
-          storage: "2 x M.2, 6 x SATA 6Gb/s",
-          network: "2.5G LAN y Wi-Fi 6",
-          audio: "Realtek ALC1200 7.1 Surround Sound"
-        },
-        connectivity: {
-          vga: "No",
-          dvi: "No",
-          hdmi: "1x HDMI 2.1",
-          displayPorts: "3x DisplayPort 1.4a",
-          usbTypeC: "No"
-        },
-        power: {
-          energyConsumption: "170 W",
-          recommendedPower: "550 W"
-        },
-        dimensions: {
-          length: "242 mm",
-          width: "112 mm",
-          thickness: "40 mm"
-        }
-      }
-    },
-    // Más productos...
-  ];
+  }
+  const images = [
+          asusb5501,
+          asusb5502,
+          asusb5503
+        ];
+  // const productsFake = [
+  //   {
+  //     id: 1,
+  //     name: "Motherboard ASUS ROG Strix B550-F Gaming",
+  //     priceCurrent: "308,300",
+  //     priceBefore: "311,400",
+  //     description: "La ASUS ROG Strix B550-F Gaming es una placa madre diseñada para gamers y entusiastas, ofreciendo compatibilidad con los últimos procesadores AMD Ryzen y características avanzadas como PCIe 4.0, Wi-Fi 6, y un diseño robusto para un rendimiento excepcional.",
+  //     availability: "En stock y listo para envío.",
+  //     images: [
+  //       asusb5501,
+  //       asusb5502,
+  //       asusb5503
+  //     ],
+  //     details: {
+  //       general: {
+  //         socket: "AM4",
+  //         chipset: "AMD B550",
+  //         memory: "4 x DIMM, máx. 128 GB, DDR4",
+  //         expansionSlots: "2 x PCIe 4.0 x16, 3 x PCIe 3.0 x1",
+  //         storage: "2 x M.2, 6 x SATA 6Gb/s",
+  //         network: "Intel I225-V 2.5Gb Ethernet",
+  //         audio: "ROG SupremeFX 7.1 Surround Sound"
+  //       },
+  //       connectivity: {
+  //         vga: "No",
+  //         dvi: "No",
+  //         hdmi: "1x HDMI 2.1",
+  //         displayPorts: "3x DisplayPort 1.4a",
+  //         usbTypeC: "No"
+  //       },
+  //       power: {
+  //         energyConsumption: "170 W",
+  //         recommendedPower: "550 W"
+  //       },
+  //       dimensions: {
+  //         length: "242 mm",
+  //         width: "112 mm",
+  //         thickness: "40 mm"
+  //       }
+  //     }
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Motherboard MSI MPG Z490 Gaming Edge WiFi",
+  //     priceCurrent: "379,350",
+  //     priceBefore: "383,150",
+  //     description: "La MSI MPG Z490 Gaming Edge WiFi es una placa madre de alto rendimiento diseñada para entusiastas y gamers, con soporte para los últimos procesadores Intel Core de décima generación, conectividad Wi-Fi 6, y un diseño avanzado para un rendimiento y estabilidad excepcionales.",
+  //     availability: "En stock y listo para envío.",
+  //     images: [
+  //       msi1,
+  //       msi2,
+  //       msi3
+  //     ],
+  //     details: {
+  //       general: {
+  //         socket: "LGA 1200",
+  //         chipset: "Intel Z490",
+  //         memory: "4 x DIMM, máx. 128 GB, DDR4",
+  //         expansionSlots: "2 x PCIe 3.0 x16, 3 x PCIe 3.0 x1",
+  //         storage: "2 x M.2, 6 x SATA 6Gb/s",
+  //         network: "2.5G LAN y Wi-Fi 6",
+  //         audio: "Realtek ALC1200 7.1 Surround Sound"
+  //       },
+  //       connectivity: {
+  //         vga: "No",
+  //         dvi: "No",
+  //         hdmi: "1x HDMI 2.1",
+  //         displayPorts: "3x DisplayPort 1.4a",
+  //         usbTypeC: "No"
+  //       },
+  //       power: {
+  //         energyConsumption: "170 W",
+  //         recommendedPower: "550 W"
+  //       },
+  //       dimensions: {
+  //         length: "242 mm",
+  //         width: "112 mm",
+  //         thickness: "40 mm"
+  //       }
+  //     }
+  //   },
+  //   Más productos...
+  // ];
 
-  const product = products.find((prod) => prod.id === parseInt(id));
+  // const product = products.find((prod) => prod.id === parseInt(id));
 
   const settings = {
     dots: true,
@@ -128,7 +141,7 @@ const ProductPlaca = () => {
         {/* Carrusel de imágenes */}
         <div className="w-full md:w-1/2">
           <Slider {...settings} className="mb-6">
-            {product.images.map((image, index) => (
+            {images.map((image, index) => (
               <div key={index} className="flex justify-center">
                 <img
                   src={image}
@@ -148,8 +161,8 @@ const ProductPlaca = () => {
 
           {/* Precios */}
           <div className="mb-6">
-            <span className="text-4xl font-bold text-orange-600">${product.priceCurrent}</span>
-            <span className="text-xl text-gray-400 line-through ml-4">${product.priceBefore}</span>
+            <span className="text-4xl font-bold text-orange-600">${product.precio}</span>
+            <span className="text-xl text-gray-400 line-through ml-4">${product.precio + product.precio * 0.15}</span>
           </div>
 
           {/* Opciones verdes */}
@@ -179,7 +192,9 @@ const ProductPlaca = () => {
             >
               <FaShareAlt className="mr-2" /> Compartir
             </button>
-            <button className="w-full md:w-auto bg-orange-600 text-white text-lg px-8 py-4 rounded-lg hover:bg-orange-700 transition duration-300 ease-in-out shadow-lg">
+            <button 
+            onClick={handleAddProductToShoppingCart}
+            className="w-full md:w-auto bg-orange-600 text-white text-lg px-8 py-4 rounded-lg hover:bg-orange-700 transition duration-300 ease-in-out shadow-lg">
               Sumar al Carrito
             </button>
           </div>
@@ -197,23 +212,23 @@ const ProductPlaca = () => {
           <div>
             <h4 className="font-semibold text-lg text-gray-700">General</h4>
             <ul className="mt-3 space-y-2 text-gray-600">
-              <li>Socket: {product.details.general.socket}</li>
-              <li>Chipset: {product.details.general.chipset}</li>
-              <li>Memoria: {product.details.general.memory}</li>
-              <li>Slots de Expansión: {product.details.general.expansionSlots}</li>
-              <li>Almacenamiento: {product.details.general.storage}</li>
-              <li>Red: {product.details.general.network}</li>
-              <li>Audio: {product.details.general.audio}</li>
-            </ul>
+              <li>Socket: {product?.details?.general?.socket}</li>
+              <li>Chipset: {product?.details?.general?.chipset}</li>
+              <li>Memoria: {product?.details?.general?.memory}</li>
+              <li>Slots de Expansión: {product?.details?.general?.expansionSlots}</li>
+              <li>Almacenamiento: {product?.details?.general?.storage}</li>
+              <li>Red: {product?.details?.general?.network}</li>
+              <li>Audio: {product?.details?.general?.audio}</li>
+            </ul>?
           </div>
           <div>
             <h4 className="font-semibold text-lg text-gray-700">Conectividad</h4>
             <ul className="mt-3 space-y-2 text-gray-600">
-              <li>VGA: {product.details.connectivity.vga}</li>
-              <li>DVI: {product.details.connectivity.dvi}</li>
-              <li>HDMI: {product.details.connectivity.hdmi}</li>
-              <li>Puertos Display: {product.details.connectivity.displayPorts}</li>
-              <li>USB Tipo-C: {product.details.connectivity.usbTypeC}</li>
+              <li>VGA: {product?.details?.connectivity?.vga}</li>
+              <li>DVI: {product?.details?.connectivity?.dvi}</li>
+              <li>HDMI: {product?.details?.connectivity?.hdmi}</li>
+              <li>Puertos Display: {product?.details?.connectivity?.displayPorts}</li>
+              <li>USB Tipo-C: {product?.details?.connectivity?.usbTypeC}</li>
             </ul>
           </div>
         </div>
@@ -221,16 +236,16 @@ const ProductPlaca = () => {
           <div>
             <h4 className="font-semibold text-lg text-gray-700">Consumo de Energía</h4>
             <ul className="mt-3 space-y-2 text-gray-600">
-              <li>Consumo energético: {product.details.power.energyConsumption}</li>
-              <li>Recomendación de fuente: {product.details.power.recommendedPower}</li>
+              <li>Consumo energético: {product?.details?.power?.energyConsumption}</li>
+              <li>Recomendación de fuente: {product?.details?.power?.recommendedPower}</li>
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold text-lg text-gray-700">Dimensiones</h4>
+            <h4 className="font-semibold text-lg text-gray-700">Dimensiones</h4>x
             <ul className="mt-3 space-y-2 text-gray-600">
-              <li>Longitud: {product.details.dimensions.length}</li>
-              <li>Ancho: {product.details.dimensions.width}</li>
-              <li>Espesor: {product.details.dimensions.thickness}</li>
+              <li>Longitud: {product?.details?.dimensions?.length}</li>
+              <li>Ancho: {product?.details?.dimensions?.width}</li>
+              <li>Espesor: {product?.details?.dimensions?.thickness}</li>
             </ul>
           </div>
         </div>
@@ -262,7 +277,7 @@ const ProductPlaca = () => {
             
             <div className="my-4 border-t pt-4">
               <h3 className="font-semibold text-lg">Resumen del Producto</h3>
-              <p className="text-gray-600">{product.description}</p>
+              <p className="text-gray-600">{product?.description}</p>
             </div>
             
             <h3 className="font-semibold text-lg">Comparte en:</h3>

@@ -34,12 +34,17 @@ export const CreateProductPage = () => {
                   { label: "Precio", name: "precio", type: "number" },
                   { label: "Stock", name: "stock", type: "number" },
                   { label: "Características", name: "features", type: "text" },
-                  { label: "Garantía", name: "garantia", type: "text" },
+                  // El campo select para la garantía
+                  { label: "Garantía", name: "garantia", type: "select", options: [
+                      { value: "Garantia de 3 meses", label: "Garantía de 3 meses" },
+                      { value: "Garantia de 6 meses", label: "Garantía de 6 meses" },
+                      { value: "Garantia de 12 meses", label: "Garantía de 12 meses" },
+                      { value: "Garantia de 2 años", label: "Garantía de 2 años" },
+                      { value: "Garantia especial de por vida", label: "Garantía especial de por vida" },
+                  ] },
                   { label: "Imagen (Base64)", name: "image", type: "text" },
-                ].map(({ label, name, type }, index) => {
-
-                  if (name === "garantia") {
-
+                ].map(({ label, name, type, options }, index) => {
+                  if (type === "select") {
                     return (
                       <div
                         key={`${name}-${index}`}
@@ -51,31 +56,27 @@ export const CreateProductPage = () => {
                         >
                           {label}
                         </label>
-                        <select name={name} id=""className="w-full rounded-lg border border-gray-300 dark:border-gray-500 dark:bg-gray-800 px-2 py-1">
-
-                          <option value="Garantia de 3 meses" className="px-4 py-2 hover:bg-orange-300 ">
-                            Garantia de 3 meses
-                          </option>
-                          <option value="Garantia de 6 meses">
-                            Garantia de 6 meses
-                          </option>
-                          <option value="Garantia de 12 meses">
-                            Garantia de 12 meses
-                          </option>
-                          <option value="Garantia de 2 años">
-                            Garantia de 2 años
-
-                          </option>
-                          <option value="Garantia especial de por vida">
-                            Garantia especial de por vida
-
-                          </option>
-
-
-
+                        <select
+                          name={name}
+                          id={name}
+                          value={values[name]} 
+                          onChange={handleChange} 
+                          onBlur={handleBlur}
+                          className="w-full rounded-lg border border-gray-300 dark:border-gray-500 dark:bg-gray-800 px-2 py-1"
+                        >
+                          {options.map((option, idx) => (
+                            <option key={idx} value={option.value}>
+                              {option.label}
+                            </option>
+                          ))}
                         </select>
+                        {errors[name] && touched[name] && (
+                          <p className="text-xs text-red-600 font-semibold text-center">
+                            {errors[name]}
+                          </p>
+                        )}
                       </div>
-                    )
+                    );
                   }
 
                   return (
@@ -104,7 +105,7 @@ export const CreateProductPage = () => {
                         </p>
                       )}
                     </div>
-                  )
+                  );
                 })}
               </div>
               <div className="flex flex-col space-y-2">

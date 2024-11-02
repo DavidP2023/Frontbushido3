@@ -11,6 +11,9 @@ import { PopupRegisterSucess } from "../Popup/PopupRegisterSucess";
 import { RegisterPopup } from "../Popup/RegisterPopup";
 import { useAuthenticationStorage } from "../../../../user/data/local/user_local_data_sources";
 import {UserProfileModal } from '../Navbar/UserProfileModal';
+
+
+
 import { 
   FacebookShareButton, 
   TwitterShareButton, 
@@ -20,25 +23,35 @@ import {
   WhatsappIcon 
 } from "react-share";
 import { FaCheckCircle, FaTruck, FaShareAlt } from 'react-icons/fa';
+import { useProductLocalStorage } from "../../data/local/products_local_data_sources";
 
-const Menu = [
-  { id: 1, name: "Inicio", link: "/dashboard" },
-  { id: 2, name: "Procesadores", link: "/procesadores" },
-  { id: 3, name: "Placas de Video", link: "/placadevideo" },
-  { id: 4, name: "Motherboards", link: "/motherboards" },
-  { id: 5, name: "Periféricos", link: "/perifericos" },
-];
 
-const DropdownLinks = [
-  { id: 1, name: "Cooler", link: "/cooler" },
-  { id: 2, name: "Discos duros HDD", link: "/#discos-durosHDD" },
-  { id: 3, name: "Discos Solidos SSD", link: "/#discos-solidosSSD" },
-  { id: 4, name: "Fuentes", link: "/#fuentes" },
-  { id: 5, name: "Gabinetes", link: "/#gabinetes" },
-  { id: 6, name: "Memorias RAM", link: "/#memorias-RAM" },
-];
+
 
 export const Navbar = () => {
+
+  const {shoppingCart , cleanShoppingCart} = useProductLocalStorage();
+
+
+  const Menu = [
+    { id: 1, name: "Inicio", link: "/dashboard" },
+    { id: 2, name: "Procesadores", link: "/procesadores" },
+    { id: 3, name: "Placas de Video", link: "/placadevideo" },
+    { id: 4, name: "Motherboards", link: "/motherboards" },
+    { id: 5, name: "Periféricos", link: "/perifericos" },
+  ];
+  
+  const DropdownLinks = [
+    { id: 1, name: "Crear producto", link: "/create-product", showifAdmin:true },
+    { id: 2, name: "Cooler", link: "/cooler" , showifAdmin:false },
+    { id: 3, name: "Discos duros HDD", link: "/#discos-durosHDD" , showifAdmin:false},
+    { id: 4, name: "Discos Solidos SSD", link: "/#discos-solidosSSD", showifAdmin:false },
+    { id: 5, name: "Fuentes", link: "/#fuentes" , showifAdmin:false},
+    { id: 6, name: "Gabinetes", link: "/#gabinetes" , showifAdmin:false},
+    { id: 7, name: "Memorias RAM", link: "/#memorias-RAM" , showifAdmin:false},
+  
+  ];
+
   const shareUrl = "https://bushido-tech.netlify.app/"; 
   const shareMessage = "¡Recomendamos este increíble sitio web de tecnología! Encuentra los mejores componentes de PC a precios competitivos. Garantía de calidad y servicio al cliente excepcional. ¡Te esperamos!";
   const openModal = () => {
@@ -126,7 +139,8 @@ export const Navbar = () => {
               className="hidden sm:flex bg-gradient-to-r from-orange-500 to-orange-700 transition-all duration-200 text-white py-2 px-4 rounded-md items-center gap-2 group hover:from-orange-600 hover:to-orange-800 transform hover:scale-105"
             >
               <FaCartShopping className="text-xl text-white drop-shadow-sm cursor-pointer" />
-              <span className="hidden sm:block group-hover:inline-block">Ordenar</span>
+              <span className="hidden sm:block group-hover:inline-block">{`Ordenar(${shoppingCart.length})`
+                }</span>
             </button>
 
             {/* Cambio de Modo Oscuro */}
@@ -264,16 +278,19 @@ export const Navbar = () => {
           </a>
           <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 z-50 hidden group-hover:block w-[200px] rounded-md bg-white p-2 text-black shadow-lg">
             <ul>
-              {DropdownLinks.map((data) => (
-                <li key={data.id}>
+              {DropdownLinks.map((data) => {
+                
+                if(data.showifAdmin && !user?.rol?.includes("admin")) {
+                 return 
+                }
+                return ( <li key={data.id}>
                   <a
                     href={data.link}
                     className="block w-full rounded-md p-2 hover:bg-orange-200 transition duration-200"
                   >
                     {data.name}
                   </a>
-                </li>
-              ))}
+                </li>)})}
             </ul>
           </div>
         </li>
@@ -366,7 +383,7 @@ export const Navbar = () => {
       handleLogOut={handleLogOut}
     />
 
-      <Popup orderPopup={orderPopup} setOrderPopup={setOrderPopup}/>
+      <Popup orderPopup={orderPopup} setOrderPopup={setOrderPopup} shoppingCart={shoppingCart} cleanShoppingCart={cleanShoppingCart} />
       <PopupInitSession showModal={showInitSessionModal} setShowModal={setShowInitSessionModal} setShowRegisterModal={setShowRegisterModal} />
       <RegisterPopup showModal={showRegisterModal} setShowModal={setShowRegisterModal} />
     </div>

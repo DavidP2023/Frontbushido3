@@ -28,9 +28,8 @@ const createProductFormSchema = yup.object().shape({
   features: yup
     .array()
     .of(yup.string()),
-  garantia: yup
-    .array()
-    .of(yup.string())
+  garantia: 
+    yup.string()
     .nullable(), 
   image: yup
     .string()

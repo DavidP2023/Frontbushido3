@@ -17,3 +17,38 @@ mutation CreateProduct($createProductInput: CreateProductInput!) {
   }
 }
 `
+
+export const GetProductQuery = gql`
+query Query {
+  getProducts {
+    type
+    stock
+    precio
+    name
+    image
+    id
+    garantia
+    features
+    description
+    brand
+   
+  }
+}
+`
+
+export const GetProductByIdQuery = gql`
+query Query($getProductByidId: ID!) {
+  getProductByid(id: $getProductByidId) {
+    type
+    stock
+    precio
+    name
+    image
+    id
+    garantia
+    features
+    description
+    brand
+  }
+}
+`

@@ -2,10 +2,15 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import motherb550 from '../../../../assets/mother/motherb550.png';  
-import motherZ490 from '../../../../assets/mother/motherZ490.png';
+import emptyProductImg from '../../../../assets/emptyProductImg.png';
+import { useGetProductQueryHook } from '../hooks/use_get_product_query_hook';
 
 export const MotherboardsPage = () => {
+
+  const { data:products, error, loading } = useGetProductQueryHook();
+  // console.log("DATA DE PRODUCTOS",  products);
+
+
   const categories = [
     'Componentes de PC',
     'Coolers',
@@ -19,30 +24,11 @@ export const MotherboardsPage = () => {
     'Procesadores'
   ];
 
-  const products = [
-    {
-      id: 1,
-      name: 'Motherboard ASUS ROG Strix B550-F Gaming',
-      image: motherb550,
-      price: '308,300',
-      previousPrice: '311,400',
-      available: true,
-    },
-    {
-      id: 2,
-      name: 'Motherboard MSI MPG Z490 Gaming Edge WiFi',
-      image: motherZ490,
-      price: '379,350',
-      previousPrice: '383,150',
-      available: true,
-    }
-  ];
-
   // Estado para los productos favoritos
   const [favoriteProducts, setFavoriteProducts] = useState({});
 
   const toggleFavorite = (e, productId) => {
-    e.preventDefault(); 
+    e.preventDefault();
     setFavoriteProducts(prevState => ({
       ...prevState,
       [productId]: !prevState[productId]
@@ -56,8 +42,8 @@ export const MotherboardsPage = () => {
         <h2 className="font-semibold text-xl mb-6 text-orange-500">Categorías</h2>
         <ul>
           {categories.map((category, index) => (
-            <li 
-              key={index} 
+            <li
+              key={index}
               className="mb-3 hover:bg-orange-100 hover:text-orange-700 p-3 rounded cursor-pointer"
             >
               {category}
@@ -70,7 +56,7 @@ export const MotherboardsPage = () => {
       <div className="flex-grow p-10 bg-gray-50">
         <h1 className="text-center text-4xl font-semibold mb-12 text-orange-500">Motherboards</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {products.map((product) => (
+          {products?.map((product) => (
             <Link to={`/motherboards/${product.id}`} key={product.id} className="relative">
               <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white hover:shadow-2xl transition-shadow duration-300 h-full flex flex-col relative">
                 {/* Corazón en la esquina superior derecha */}
@@ -83,7 +69,7 @@ export const MotherboardsPage = () => {
                     className={favoriteProducts[product.id] ? 'text-red-500' : 'text-gray-400'}
                   />
                 </button>
-                <img className="w-full" src={product.image} alt={product.name} />
+                <img className="w-full" src={product.image !== '' ? product.image : emptyProductImg} alt={product.name} />
                 <div className="px-6 py-4 flex-grow">
                   <div className="font-semibold text-xl mb-2 text-gray-800">{product.name}</div>
                   <p className="text-gray-600 text-base">
