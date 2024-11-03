@@ -58,7 +58,7 @@ export const PlacavideoPage = () => {
         <h1 className="text-center text-4xl font-semibold mb-12 text-orange-500">Placas de Video</h1>
        
         {
-          products?.length === 0 ?
+         products?.length === 0 || products === undefined?
             <div className='w-full h-full flex items-center justify-center'>
                <img className='object-contain w-full h-full' src={emptyProductImgPlaceHolder} /></div>
             :
@@ -84,7 +84,7 @@ export const PlacavideoPage = () => {
                       </p>
                     </div>
                     <div className="px-6 py-4">
-                      {product.available ? (
+                      {product.stock > 0  ? (
                         <span className="inline-block bg-green-100 rounded-full px-3 py-1 text-sm font-semibold text-green-700">
                           Disponible
                         </span>

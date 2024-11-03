@@ -25,9 +25,9 @@ export const Popup = ({ orderPopup, setOrderPopup, shoppingCart, cleanShoppingCa
   return (
     <>
       {orderPopup && (
-        <div className="popup">
+        <div>
           <div className="h-screen w-screen fixed top-0 left-0 bg-black/50 z-50 backdrop-blur-sm flex items-center justify-center">
-            <div className="p-4 shadow-md bg-white dark:bg-gray-900 rounded-lg duration-200 w-[500px] relative">
+            <div className=" overflow-auto p-4 shadow-md bg-white dark:bg-gray-900 rounded-lg duration-200 w-[800px] relative max-h-[600px]">
               {/* header */}
               <div className="flex items-center justify-end">
                 <IoCloseOutline
@@ -39,19 +39,23 @@ export const Popup = ({ orderPopup, setOrderPopup, shoppingCart, cleanShoppingCa
                 <img src={Logo} alt="Logo" className="w-16 mb-4" />
                 <h1 className="text-lg font-bold">Realizar Pedido</h1>
               </div>
-              <div className=" py-5">
+              <div className=" py-5 flex flex-col gap-4">
                 {
                   shoppingCart?.map(cart => {
 
                     return (
 
-
-                      <div className="flex justify-between items-start w-full">
+                      
+                      <div className="flex justify-between items-center w-full ">
+                        <div className="flex gap-4 items-center"> 
+                        <div className="w-20 h-20 " >
+                          <img className='w-full h-full' src={cart.image} />
+                        </div>
                         <p className="text-black font-bold">
                           {
                             cart.name
                           }
-                        </p>
+                        </p> </div>
                         <p className="text-cyan-500 font-bold">
                           {
                             cart.precio.toLocaleString("en-US", { style: "currency", currency: "USD" })
@@ -78,13 +82,13 @@ export const Popup = ({ orderPopup, setOrderPopup, shoppingCart, cleanShoppingCa
                     }
                   </p>
                 </div>
-                <button className=" px-3 py-2 bg-orange-500 text-white border-[1px] rounded-lg"
+               <div className="w-[220px]"> <button className=" px-3 py-2 bg-orange-500 text-white border-[1px] rounded-lg"
                   onClick={
                     handleCleanCart
                   }
                 >
                   Limpiar Carrito
-                </button>
+                </button></div>
 
               </div>
 

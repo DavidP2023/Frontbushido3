@@ -1,7 +1,7 @@
 import Product from "../data/models/product";
 import { useCreateProductMutationHook } from "./use_create_product_mutation_hook";
 import * as yup from 'yup';
-import { useFormik } from 'formik';
+import { Formik, useFormik } from 'formik';
 
 const createProductFormSchema = yup.object().shape({
   name: yup
@@ -37,7 +37,7 @@ const createProductFormSchema = yup.object().shape({
 });
 
 export const useCreateProductController = () => {
-  const { errors, handleSubmit, handleChange, handleBlur, values, touched } = useFormik({
+  const { errors, handleSubmit, handleChange, handleBlur, values, touched, setFieldValue} = useFormik({
     initialValues: {
       name: '',
       description: '',
@@ -54,7 +54,24 @@ export const useCreateProductController = () => {
   });
 
   const { loading, mutate, error, data } = useCreateProductMutationHook();
-  console.log( data?.createProduct?.brand, 'PRODUCTO brand')
+
+  const handleFileChange = (event)=> {
+ 
+    const file = event.target.files[0];
+    console.log(file);
+
+    
+    if(file){
+      const reader = new FileReader();
+      reader.onloadend = ()=> {
+        
+        console.log("READER RESUTL", reader.result);
+        setFieldValue("image", reader.result);
+      }
+      reader.readAsDataURL(file);
+    }
+    
+  }
   const handleCreateProductClick = (values) => {
     const product = new Product();
 
@@ -79,6 +96,7 @@ export const useCreateProductController = () => {
     handleBlur,
     values,
     touched,
-    data
+    data,
+    handleFileChange,
   };
 };

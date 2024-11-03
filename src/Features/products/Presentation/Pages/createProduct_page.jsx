@@ -11,6 +11,7 @@ export const CreateProductPage = () => {
     touched,
     loading,
     data,
+    handleFileChange
   } = useCreateProductController();
 
   return (
@@ -57,7 +58,7 @@ export const CreateProductPage = () => {
                       { value: "Garantia especial de por vida", label: "Garantía especial de por vida" },
                     ]
                   },
-                  { label: "Imagen (Base64)", name: "image", type: "text" },
+                  { label: "Imagen (Base64)", name: "image", type: "file" },
                 ].map(({ label, name, type, options }, index) => {
                   if (type === "select") {
                     return (
@@ -92,6 +93,33 @@ export const CreateProductPage = () => {
                         )}
                       </div>
                     );
+                  }
+                  if (type === "file") {
+                    return (
+                      <div
+                        key={`${name}-${index}`}
+                        className="w-full md:w-1/2 px-2 mb-4"
+                      >
+                        <label
+                          htmlFor={name}
+                          className="block text-sm font-medium text-gray-700"
+                        >
+                          {label}
+                        </label>
+                        <input
+                          type={type}
+                          id={name}
+                          name={name}
+                          onChange={handleFileChange}
+                          className="w-full rounded-lg border border-gray-300 dark:border-gray-500 dark:bg-gray-800 px-2 py-1"
+                        />
+                        {errors[name] && touched[name] && (
+                          <p className="text-xs text-red-600 font-semibold text-center">
+                            {errors[name]}
+                          </p>
+                        )}
+                      </div>
+                    )
                   }
 
                   return (

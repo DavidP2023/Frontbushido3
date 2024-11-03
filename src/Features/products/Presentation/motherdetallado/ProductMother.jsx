@@ -2,14 +2,9 @@ import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Slider from "react-slick";
 import { FaCheckCircle, FaTruck, FaShareAlt, FaFacebook, FaTwitter, FaWhatsapp } from 'react-icons/fa'; 
-import asusb5501 from '../../../../assets/mother/asusb5501.png';
-import asusb5502 from '../../../../assets/mother/asusb5502.png';
-import asusb5503 from '../../../../assets/mother/asusb5503.png';
 
-// ID2..
-import msi1 from '../../../../assets/mother/msi1.png';
-import msi2 from '../../../../assets/mother/msi2.png';
-import msi3 from '../../../../assets/mother/msi3.png';
+
+
 import { useGetProductByIdQueryHook } from '../hooks/use_get_product_by_id_hook';
 import { useProductLocalStorage } from '../data/local/products_local_data_sources';
 
@@ -24,95 +19,9 @@ const ProductPlaca = () => {
 
   }
   const images = [
-          asusb5501,
-          asusb5502,
-          asusb5503
+       product?.image
         ];
-  // const productsFake = [
-  //   {
-  //     id: 1,
-  //     name: "Motherboard ASUS ROG Strix B550-F Gaming",
-  //     priceCurrent: "308,300",
-  //     priceBefore: "311,400",
-  //     description: "La ASUS ROG Strix B550-F Gaming es una placa madre diseñada para gamers y entusiastas, ofreciendo compatibilidad con los últimos procesadores AMD Ryzen y características avanzadas como PCIe 4.0, Wi-Fi 6, y un diseño robusto para un rendimiento excepcional.",
-  //     availability: "En stock y listo para envío.",
-  //     images: [
-  //       asusb5501,
-  //       asusb5502,
-  //       asusb5503
-  //     ],
-  //     details: {
-  //       general: {
-  //         socket: "AM4",
-  //         chipset: "AMD B550",
-  //         memory: "4 x DIMM, máx. 128 GB, DDR4",
-  //         expansionSlots: "2 x PCIe 4.0 x16, 3 x PCIe 3.0 x1",
-  //         storage: "2 x M.2, 6 x SATA 6Gb/s",
-  //         network: "Intel I225-V 2.5Gb Ethernet",
-  //         audio: "ROG SupremeFX 7.1 Surround Sound"
-  //       },
-  //       connectivity: {
-  //         vga: "No",
-  //         dvi: "No",
-  //         hdmi: "1x HDMI 2.1",
-  //         displayPorts: "3x DisplayPort 1.4a",
-  //         usbTypeC: "No"
-  //       },
-  //       power: {
-  //         energyConsumption: "170 W",
-  //         recommendedPower: "550 W"
-  //       },
-  //       dimensions: {
-  //         length: "242 mm",
-  //         width: "112 mm",
-  //         thickness: "40 mm"
-  //       }
-  //     }
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Motherboard MSI MPG Z490 Gaming Edge WiFi",
-  //     priceCurrent: "379,350",
-  //     priceBefore: "383,150",
-  //     description: "La MSI MPG Z490 Gaming Edge WiFi es una placa madre de alto rendimiento diseñada para entusiastas y gamers, con soporte para los últimos procesadores Intel Core de décima generación, conectividad Wi-Fi 6, y un diseño avanzado para un rendimiento y estabilidad excepcionales.",
-  //     availability: "En stock y listo para envío.",
-  //     images: [
-  //       msi1,
-  //       msi2,
-  //       msi3
-  //     ],
-  //     details: {
-  //       general: {
-  //         socket: "LGA 1200",
-  //         chipset: "Intel Z490",
-  //         memory: "4 x DIMM, máx. 128 GB, DDR4",
-  //         expansionSlots: "2 x PCIe 3.0 x16, 3 x PCIe 3.0 x1",
-  //         storage: "2 x M.2, 6 x SATA 6Gb/s",
-  //         network: "2.5G LAN y Wi-Fi 6",
-  //         audio: "Realtek ALC1200 7.1 Surround Sound"
-  //       },
-  //       connectivity: {
-  //         vga: "No",
-  //         dvi: "No",
-  //         hdmi: "1x HDMI 2.1",
-  //         displayPorts: "3x DisplayPort 1.4a",
-  //         usbTypeC: "No"
-  //       },
-  //       power: {
-  //         energyConsumption: "170 W",
-  //         recommendedPower: "550 W"
-  //       },
-  //       dimensions: {
-  //         length: "242 mm",
-  //         width: "112 mm",
-  //         thickness: "40 mm"
-  //       }
-  //     }
-  //   },
-  //   Más productos...
-  // ];
 
-  // const product = products.find((prod) => prod.id === parseInt(id));
 
   const settings = {
     dots: true,
