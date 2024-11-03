@@ -19,22 +19,24 @@ mutation CreateProduct($createProductInput: CreateProductInput!) {
 `
 
 export const GetProductQuery = gql`
-query Query {
-  getProducts {
-    type
-    stock
-    precio
-    name
-    image
-    id
-    garantia
-    features
-    description
-    brand
-   
+  query GetProducts($offset: Int, $limit: Int, $search: String) {
+    getProducts(offset: $offset, limit: $limit, search: $search) {
+      itemCount
+      items {
+        type
+        stock
+        precio
+        name
+        image
+        id
+        garantia
+        features
+        description
+        brand
+      }
+    }
   }
-}
-`
+`;
 
 export const GetProductByIdQuery = gql`
 query Query($getProductByidId: ID!) {

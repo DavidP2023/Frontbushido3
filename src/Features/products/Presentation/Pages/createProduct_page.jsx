@@ -30,18 +30,33 @@ export const CreateProductPage = () => {
                   { label: "Nombre del Producto", name: "name", type: "text" },
                   { label: "Descripción", name: "description", type: "text" },
                   { label: "Marca", name: "brand", type: "text" },
-                  { label: "Tipo", name: "type", type: "text" },
+                  {
+                    label: "Tipo", name: "type", type: "select", options: [
+                      { value: "Procesadores", label: "Procesadores" },
+                      { value: "Placas de Video", label: "Placas de Video" },
+                      { value: "Periféricos", label: "Periféricos" },
+                      { value: "Motherboards", label: "Motherboards" },
+                      { value: "Cooler", label: "Cooler" },
+                      { value: "Discos duros HDD", label: "Discos duros HDD" },
+                      { value: "Fuentes", label: "Fuentes" },
+                      { value: "Gabinetes", label: "Gabinetes" },
+                      { value: "Memorias RAM", label: "Memorias RAM" },
+                    ]
+                  },
                   { label: "Precio", name: "precio", type: "number" },
                   { label: "Stock", name: "stock", type: "number" },
                   { label: "Características", name: "features", type: "text" },
                   // El campo select para la garantía
-                  { label: "Garantía", name: "garantia", type: "select", options: [
+
+                  {
+                    label: "Garantía", name: "garantia", type: "select", options: [
                       { value: "Garantia de 3 meses", label: "Garantía de 3 meses" },
                       { value: "Garantia de 6 meses", label: "Garantía de 6 meses" },
                       { value: "Garantia de 12 meses", label: "Garantía de 12 meses" },
                       { value: "Garantia de 2 años", label: "Garantía de 2 años" },
                       { value: "Garantia especial de por vida", label: "Garantía especial de por vida" },
-                  ] },
+                    ]
+                  },
                   { label: "Imagen (Base64)", name: "image", type: "text" },
                 ].map(({ label, name, type, options }, index) => {
                   if (type === "select") {
@@ -59,8 +74,8 @@ export const CreateProductPage = () => {
                         <select
                           name={name}
                           id={name}
-                          value={values[name]} 
-                          onChange={handleChange} 
+                          value={values[name]}
+                          onChange={handleChange}
                           onBlur={handleBlur}
                           className="w-full rounded-lg border border-gray-300 dark:border-gray-500 dark:bg-gray-800 px-2 py-1"
                         >
