@@ -2,6 +2,7 @@ import { useState } from "react";
 import Logo from "../../../../../assets/LogoBus.png";
 import { IoMdSearch } from "react-icons/io";
 import { FaCartShopping, FaUser } from "react-icons/fa6";
+import { FaHeart } from "react-icons/fa";
 import { FaCaretDown, FaBars } from "react-icons/fa";
 import { DarkMode } from "./DarkMode";
 import { PopupInitSession } from "../Popup/PopupInitSession";
@@ -25,9 +26,6 @@ import {
 import { FaCheckCircle, FaTruck, FaShareAlt } from 'react-icons/fa';
 import { useProductLocalStorage } from "../../data/local/products_local_data_sources";
 
-
-
-
 export const Navbar = () => {
 
   const { shoppingCart, cleanShoppingCart } = useProductLocalStorage();
@@ -41,6 +39,8 @@ export const Navbar = () => {
     { id: 3, name: "Placas de Video", link: "/placadevideo" },
     { id: 4, name: "Motherboards", link: "/motherboards" },
     { id: 5, name: "Periféricos", link: "/perifericos" },
+
+
   ];
 
   const DropdownLinks = [
@@ -108,7 +108,14 @@ export const Navbar = () => {
               <FaBars size={24} />
             </button>
           </div>
-
+          
+          {/* Botón de Favoritos */}
+          <button
+            className="bg-gradient-to-r from-orange-500 to-orange-700 transition-all duration-200 text-white py-2 px-4 rounded-md flex items-center gap-2 group hover:from-orange-600 hover:to-orange-800 transform hover:scale-105"
+          >
+            <FaHeart className="text-xl text-white drop-shadow-sm cursor-pointer" />
+            <span className="hidden sm:block group-hover:inline-block">Favoritos</span>
+          </button>
 
 
           <div className="flex items-center gap-4">
@@ -117,12 +124,11 @@ export const Navbar = () => {
             <div className="flex space-x-4 mt-0.8">
               <button
                 onClick={openModal}
-                className="flex items-center bg-gray-800 text-white text-lg px-4 py-1.5 rounded-lg hover:bg-gray-900 transition duration-300 ease-in-out shadow-lg dark:text-white dark:border-gray-600"
+                className="hidden sm:flex bg-gradient-to-r from-orange-500 to-orange-700 transition-all duration-200 text-white py-2 px-4 rounded-md items-center gap-2 group hover:from-orange-600 hover:to-orange-800 transform hover:scale-105"
               >
                 <FaShareAlt className="mr-2" /> Compartir
               </button>
             </div>
-
 
             {/* Barra de Búsqueda */}
             <div className="relative group hidden sm:block">
@@ -156,33 +162,19 @@ export const Navbar = () => {
 
                   <div className="relative flex items-center md:order-2 space-x-3 md:space-x-3 rtl:space-x-reverse">
 
-                    {/* Nombre de user logueado */}
-                    {/* <button
-                      type="button"
-                      className="flex text-sm rounded-full md:me-0  items-center gap-1.5 "
-                      id="user-menu-button"
-                      aria-expanded={isMenuOpen}
-                      onClick={toggleMenu}
-                    >
-                      <p className="hover:underline">
-                        {
-                          user.name + ' ' + user.lastname
-                        }
-                      </p>
-                      <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-circle-user-round w-8 h-8"><path d="M18 20a6 6 0 0 0-12 0"/><circle cx="12" cy="10" r="4"/><circle cx="12" cy="12" r="10"/></svg>
-                    </button> */}
-
+        
                     {/* Botón MI PERFIL */}
                     <button
-                      className="bg-white text-black border border-gray-300 dark:bg-gray-800 dark:text-white dark:border-gray-600 transition-all duration-200 py-2 px-4 rounded-md flex items-center gap-2 group hover:bg-gray-100 dark:hover:bg-gray-700 hover:border-gray-400 dark:hover:border-gray-500 transform hover:scale-105 ml-4"
+                      className="flex items-center gap-2 px-4 py-2 rounded-md text-white bg-orange-500 border border-orange-500 
+                       hover:bg-orange-600 hover:scale-105 transition-transform duration-200
+                         dark:bg-orange-400 dark:hover:bg-orange-500"
                       onClick={() => setShowUserProfileModal(true)}
                     >
-                      <FaUser className="text-xl dark:text-white text-black drop-shadow-sm cursor-pointer" />
-                      <span className="hidden sm:block group-hover:inline-block">
-                        {user.name + " " + user.lastname}
+                      <FaUser className="text-xl" />
+                      <span className="hidden sm:inline-block group-hover:inline-block">
+                        {user.name} {user.lastname}
                       </span>
                     </button>
-
 
 
                     {/* Menu Dropdown */}
@@ -298,27 +290,6 @@ export const Navbar = () => {
               </div>
             </li>
 
-            {/* Botones para compartir en redes sociales */}
-            {/* <li className="flex items-center gap-2">
-          <FacebookShareButton url={shareUrl} quote={shareMessage}>
-            <FacebookIcon size={32} round={true} />
-          </FacebookShareButton>
-          <TwitterShareButton url={shareUrl} title={shareMessage}>
-            <TwitterIcon size={32} round={true} />
-          </TwitterShareButton>
-          <WhatsappShareButton url={shareUrl} title={shareMessage}>
-            <WhatsappIcon size={32} round={true} />
-          </WhatsappShareButton>
-        </li> */}
-
-            {/* <div className="flex space-x-4 mt-1">
-  <button
-    onClick={openModal}
-    className="flex items-center bg-gray-800 text-white text-lg px-4 py-2 rounded-lg hover:bg-gray-900 transition duration-300 ease-in-out shadow-lg dark:text-white dark:border-gray-600"
-  >
-    <FaShareAlt className="mr-2" /> Compartir
-  </button>
-</div> */}
 
             {isModalOpen && (
               <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 ">
@@ -362,19 +333,9 @@ export const Navbar = () => {
                     </li>
                   </div>
 
-
-                  {/* <button
-        onClick={closeModal}
-        className="mt-4 bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-900 transition duration-300 ease-in-out"
-      >
-        Cerrar
-      </button> */}
                 </div>
               </div>
             )}
-
-
-
           </ul>
         </div>
       </div>

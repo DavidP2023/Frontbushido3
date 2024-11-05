@@ -25,9 +25,8 @@ const createProductFormSchema = yup.object().shape({
     .integer('El stock debe ser un número entero')
     .min(0, 'El stock no puede ser negativo')
     .required('El stock es requerido'),
-  features: yup
-    .array()
-    .of(yup.string()),
+  features: 
+    yup.string(),
   garantia: 
     yup.string()
     .nullable(), 
@@ -46,7 +45,7 @@ export const useCreateProductController = () => {
       precio: 0,
       stock: 0,
       features: [],
-      garantia: [],
+      garantia: '',
       image: '', 
     },
     validationSchema: createProductFormSchema,
